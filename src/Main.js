@@ -1,4 +1,17 @@
 import React from 'react';
 export default function Main () {
-  return (<h1>Hello World!</h1>)
+  return (
+		<div>
+			<h1>¡Bienvenido!</h1>
+			<div>
+				<label>Usuario:</label>
+				<input type="text"></input>
+				<label>Contraseña:</label>
+				<input type="password"></input>
+			</div>
+			<div>
+				<button>Entrar</button>
+			</div>
+		</div>
+	)
 }
