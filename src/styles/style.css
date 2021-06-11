@@ -1,0 +1,12 @@
+.redBox {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    display: inline-block;
+}
+.greenBox {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    display: inline-block;
+}

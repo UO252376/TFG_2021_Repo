@@ -37,8 +37,8 @@ export default class FilamentStatus extends React.Component {
                 <span>Filament status: </span>
                 {
                     isFilament ?
-                       <span style='width:10px; height:10px; background-color:red;display:inline-block;'></span> :
-                       <span style='width:10px; height:10px; background-color:green;display:inline-block;'></span>
+                       <span className="redBox"></span> :
+                       <span className="greenBox"></span>
                 }
             </div>
         );
