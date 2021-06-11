@@ -13,9 +13,6 @@ module.exports = {
     },
     extensions: ['', '.js', '.jsx', '.css']
   },
-  externals: {
-    socketIO: "socket.io-client"
-  },
   module: {
     rules	: [
       {
