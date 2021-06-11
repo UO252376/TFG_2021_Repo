@@ -13,7 +13,7 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 // Especificar peticiones personalizadas:
 const http = require('http');
 const server = http.createServer(app);
-const { Server } = require("socket.io");
+const Server = require('socket.io');
 const io = new Server(server);
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
