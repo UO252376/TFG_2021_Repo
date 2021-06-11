@@ -1,18 +1,33 @@
 import React from 'react';
 export default function Main () {
-  return (
-		<div>
-		<header><button>-+-</button></header>
-			<h1>¡Bienvenido!</h1>
+  return new Login();
+}
+
+class Login extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {};
+
+		// this.tick = this.tick.bind(this) if you use 'this' in function
+	}
+
+	componentDidMount() { // Set interval on mount if necesary
+
+	}
+
+	componentWillUnmount() { // Clear interval on unmount if set
+
+	}
+
+	tick() { // Function to call on intervall. Use setState to update components.
+		// this.setState({var: newValue})
+	}
+
+	render() {
+		return(
 			<div>
-				<label>Usuario:</label>
-				<input type="text"></input>
-				<label>Contraseña:</label>
-				<input type="password"></input>
+				<FilamentStatus />
 			</div>
-			<div>
-				<button>Entrar</button>
-			</div>
-		</div>
-	)
+		);
+	}
 }
