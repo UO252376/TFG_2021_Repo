@@ -1,11 +1,14 @@
-const spawn = require("child_process").spawn;
-const pythonProcess = spawn('python',["./python/filamentSensor.py", arg1, arg2]);
+import React from 'react';
 
-class FilamentStatus extends React.Component {
+export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
         this.status.filament = true;
         this.readSensor = this.readSensor.bind(this);
+        // Esto de momento no
+        //const spawn = require("child_process").spawn;
+        //const pythonProcess = spawn('python',["./python/filamentSensor.py"]);
+
     }
 
     componentDidMount() {
