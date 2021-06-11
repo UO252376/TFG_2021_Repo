@@ -17,8 +17,10 @@ const port = 1337;
 app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
 
 // Especificar peticiones personalizadas:
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const http = require('http');
+const server = http.createServer(app);
+const {Server} = require('socket.io');
+const io = new Server(server);
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 
