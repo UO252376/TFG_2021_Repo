@@ -1,5 +1,5 @@
 import React from 'react';
-import FilamentStatus from './FilamentStatus'
+import FilamentStatus from './FilamentStatus';
 
 export default class Main extends React.Component {
 	constructor(props) {
@@ -7,6 +7,8 @@ export default class Main extends React.Component {
 		this.state = {};
 
 		// this.tick = this.tick.bind(this) if you use 'this' in function
+
+
 	}
 
 	componentDidMount() { // Set interval on mount if necesary

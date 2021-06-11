@@ -1,35 +1,31 @@
 import React from 'react';
+require("socket.io");
+var socket = io();
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {filament : true};
         this.readSensor = this.readSensor.bind(this);
-        // Esto de momento no
-        //const spawn = require("child_process").spawn;
-        //const pythonProcess = spawn('python',["./python/filamentSensor.py"]);
+        this.readSensor();
 
-    }
-
-    componentDidMount() {
-        this.intervalId = setInterval(
-            () => this.readSensor(),
-            5000
-        );
-    }
-
-    componentWillUnmount(){
-        clearInterval(this.interval);
     }
     
+    /**
+     * Change tag estate as light changes on the back.
+     */
     readSensor() {
-        //pythonProcess.stdout.on('data', (data) => {
+        socket.on('light', (data) => {
             this.setState(
                 (state, props) => ({
                     filament: !state.filament
                 })
             );
-        //});
+		});
+    }
+
+    changeLight() {
+        socket.emit('light', 1);
     }
 
     render() {
@@ -42,6 +38,7 @@ export default class FilamentStatus extends React.Component {
                        <span className="redBox"></span> :
                        <span className="greenBox"></span>
                 }
+                <button onClick={this.changeLight}></button>
             </div>
         );
     }
