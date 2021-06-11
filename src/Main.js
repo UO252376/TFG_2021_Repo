@@ -26,6 +26,7 @@ export default class Main extends React.Component {
 	render() {
 		return(
 			<div>
+			<header><h1>Información general</h1></header>
 				<FilamentStatus />
 			</div>
 		);
