@@ -23,11 +23,9 @@ export default class FilamentStatus extends React.Component {
     }
     
     readSensor() {
-        pythonProcess.stdout.on('data', (data) => {
-            this.setState((state, props) => ({
-                filament: !state.filament
-            }));
-        });
+        this.setState((state, props) => ({
+            filament: !state.filament
+        }));
     }
 
     render() {

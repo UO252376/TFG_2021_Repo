@@ -11,6 +11,14 @@ app.use(morgan('dev')) // logging
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
 
 // Especificar peticiones personalizadas:
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+io.on('connection', (socket) => {
+    console.log(chalk.green('a user connected'));
+});
 
 
 const port = 1337;
