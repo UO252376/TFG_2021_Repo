@@ -1,5 +1,5 @@
 import React from 'react';
-import socket from "socket.io-client";
+import socketIO from "socket.io-client";
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
@@ -11,6 +11,7 @@ export default class FilamentStatus extends React.Component {
         //const pythonProcess = spawn('python',["./python/filamentSensor.py"]);
         this.lightValue = 1;
         this.changeLight = this.changeLight.bind(this);
+        this.socket = socketIO();
     }
 
     componentDidMount() {
@@ -31,7 +32,7 @@ export default class FilamentStatus extends React.Component {
     }
 
     changeLight(){
-        socket.emit('light', this.lightValue);
+        this.socket.emit('light', this.lightValue);
         this.lightValue = this.lightValue == 0 ? 1 : 0;
     }
 
