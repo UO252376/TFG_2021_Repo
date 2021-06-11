@@ -1,6 +1,5 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://192.168.1.21";
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
@@ -10,7 +9,9 @@ export default class FilamentStatus extends React.Component {
         // Esto de momento no
         //const spawn = require("child_process").spawn;
         //const pythonProcess = spawn('python',["./python/filamentSensor.py"]);
-
+        this.lightValue = 1;
+        this.changeLight = this.changeLight.bind(this);
+        this.socket = socketIOClient();
     }
 
     componentDidMount() {
@@ -30,6 +31,11 @@ export default class FilamentStatus extends React.Component {
         }));
     }
 
+    changeLight(){
+        socket.emit('light', this.lightValue);
+        this.lightValue = this.lightValue == 0 ? 1 : 0;
+    }
+
     render() {
         var isFilament = this.state.filament;
         return (
@@ -40,6 +46,7 @@ export default class FilamentStatus extends React.Component {
                        <span className="redBox"></span> :
                        <span className="greenBox"></span>
                 }
+                <button onClick={this.changeLight}>Change</button>
             </div>
         );
     }
