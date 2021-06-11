@@ -11,7 +11,9 @@ export default class FilamentStatus extends React.Component {
         //const pythonProcess = spawn('python',["./python/filamentSensor.py"]);
         this.lightValue = 1;
         this.changeLight = this.changeLight.bind(this);
-        this.socket = io();
+        this.socket = io("192.168.1.21:1337", {
+            path: '/mysocket'
+        });
     }
 
     componentDidMount() {
