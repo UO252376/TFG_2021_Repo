@@ -10,6 +10,12 @@ app.use(morgan('dev')) // logging
 //Main App Route
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
 
+
+
+const port = 1337;
+//Run Server
+app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
+
 // Especificar peticiones personalizadas:
 const http = require('http');
 const server = http.createServer(app);
@@ -24,8 +30,3 @@ io.on('connection', (socket) => {
         LED.writeSync(data);
     })
 });
-
-
-const port = 1337;
-//Run Server
-app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
