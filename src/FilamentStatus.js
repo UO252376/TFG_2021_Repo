@@ -3,7 +3,7 @@ import React from 'react';
 export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {filament = true};
+        this.state = {filament : true};
         this.readSensor = this.readSensor.bind(this);
         // Esto de momento no
         //const spawn = require("child_process").spawn;
