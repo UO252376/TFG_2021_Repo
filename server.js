@@ -15,9 +15,14 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 
 io.on('connection', (socket) => {
     console.log(chalk.green('a user connected'));
+    socket.on('light', (data) => {
+        LED.writeSync(data);
+    })
 });
 
 

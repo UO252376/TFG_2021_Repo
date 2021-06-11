@@ -1,4 +1,6 @@
 import React from 'react';
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://192.168.1.21";
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
