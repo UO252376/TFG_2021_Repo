@@ -1,5 +1,5 @@
 import React from 'react';
-import socketIO from "socket.io-client";
+import socketIO from "socketIO";
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
