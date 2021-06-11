@@ -17,12 +17,14 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 
 
 const port = 1337;
-//Run Server
-app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
 
 server.listen(port, () => {
     console.log(chalk.blue(`Socket.io listening on port ${port}`))
 })
+//Run Server
+app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
+
+
 
 // Especificar peticiones personalizadas:
 
