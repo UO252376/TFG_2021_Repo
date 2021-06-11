@@ -1,6 +1,10 @@
 //Requires
 const express = require('express');
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 const path = require('path');
 const chalk = require('chalk');
 const morgan = require('morgan');
@@ -16,11 +20,12 @@ const port = 1337;
 //Run Server
 app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
 
+server.listen(port, () => {
+    console.log(chalk.blue(`Socket.io listening on port ${port}`))
+})
+
 // Especificar peticiones personalizadas:
-const http = require('http');
-const server = http.createServer(app);
-const {Server} = require('socket.io');
-const io = new Server(server);
+
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 
@@ -28,5 +33,6 @@ io.on('connection', (socket) => {
     console.log(chalk.green('a user connected'));
     socket.on('light', (data) => {
         LED.writeSync(data);
+        console.log(chalk.blue(`Led change`))
     })
 });
