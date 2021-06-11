@@ -1,5 +1,4 @@
 import React from 'react';
-import io from 'io';
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
