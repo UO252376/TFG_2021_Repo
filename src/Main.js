@@ -1,9 +1,7 @@
 import React from 'react';
-export default function Main () {
-  return new Login();
-}
+import FilamentStatus from './FilamentStatus'
 
-class Login extends React.Component {
+export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {};

@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import React from 'react';
 
-class UserView extends React.Component {
+export default class UserView extends React.Component {
     constructor(props) {
         super(props)
     }

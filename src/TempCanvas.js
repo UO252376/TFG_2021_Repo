@@ -1,4 +1,6 @@
-class TempCanvas extends React.Component {
+import React from 'react';
+
+export default class TempCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.canvasRef = useRef(null);
