@@ -32,8 +32,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      io: 'socket.io-client',
-      socketio: 'socket.io'
+      io: 'socket.io-client'
     })
   ]
 };
