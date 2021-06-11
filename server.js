@@ -20,11 +20,11 @@ const port = 1337;
 
 //Run Server
 app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
-
+/*
 server.listen(port, () => {
     console.log(chalk.blue(`Socket.io listening on port ${port}`))
 });
-
+*/
 
 // Especificar peticiones personalizadas:
 
