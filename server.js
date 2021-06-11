@@ -14,7 +14,7 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 const http = require('http');
 const server = http.createServer(app);
 const Server = require('socket.io');
-const io = Server.listen(server);
+const io = new Server(server);
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 
