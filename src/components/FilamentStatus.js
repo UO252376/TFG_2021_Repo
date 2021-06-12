@@ -17,7 +17,7 @@ export default class FilamentStatus extends React.Component {
     render() {
         var isFilament = this.state.filament;
         return (
-            <section>
+            <section className="filamentStatus">
                 <div>
                     <span>Filament status: </span>
                     {
