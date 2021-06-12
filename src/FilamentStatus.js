@@ -5,7 +5,6 @@ export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {filament : null};
-        this.changeLight = this.changeLight.bind(this); // Button that changes light in raspberry
         this.socket = io();
         this.socket.on('filamentStatus', (data) => { // Function that changes color depending on limit switch state
             this.setState({
