@@ -1,4 +1,5 @@
 import React from 'react';
+import { ContextExclusionPlugin } from 'webpack';
 
 export default class TempCanvas extends React.Component {
     constructor(props) {
@@ -13,7 +14,9 @@ export default class TempCanvas extends React.Component {
     }
     
     initCanvas(context) {
-        context.fillStyle = "#000000";
+        context.canvas.width = window.innerWidth * 0.7;
+        context.canvas.height = window.innerHeight * 0.3;
+        context.fillStyle = "#FFFFFF";
         context.font= '10px Arial';
         context.fillRect(0,0,context.canvas.width, context.canvas.height);
     }
