@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
             return;
         }
         socket.emit('filamentStatus', value);
-        console.log(chalk.blue('Led change to ${value}'));
+        console.log(chalk.blue('Led change tocvalue: ${value}'));
         LED.writeSync(value);
     })
 });
