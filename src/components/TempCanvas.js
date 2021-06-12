@@ -3,11 +3,11 @@ import React from 'react';
 export default class TempCanvas extends React.Component {
     constructor(props) {
         super(props);
-        this.canvasRef = useRef(null);
+        this.canvasRef = React.createRef();
     }
 
     componentDidMount() {
-        this.canvas = this.canvasRev.current;
+        this.canvas = this.canvasRef.current;
         this.context = this.canvas.getContext('2d');
         this.initCanvas(this.context);
     }
@@ -29,7 +29,7 @@ export default class TempCanvas extends React.Component {
                     <span>Extrusor <span className="blueBox"></span></span>
                     <span>Cama <span className="greenBox"></span></span>
                 </div>
-                <canvas id="tempCanvas" height="300" width="400"></canvas>
+                <canvas ref={this.canvasRef} id="tempCanvas" height="300" width="400"></canvas>
                 
             </section>
         );
