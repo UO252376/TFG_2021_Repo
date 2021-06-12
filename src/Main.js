@@ -31,7 +31,7 @@ export default class Main extends React.Component {
 		return(
 			<div>
 			<header><h1>UO252376 - Controlador impresora</h1></header>
-			<TempCanvas socket={this.socket} textlines={[]} />
+			<TempCanvas socket={this.socket} textlines={[""]} />
 			<FilamentStatus socket={this.socket} />
 			<MessageLog socket={this.socket} />
 			
