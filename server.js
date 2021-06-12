@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
             console.error(chalk.red('There was an error in the limit witch'), err);
             return;
         }
-        emit('filamentStatus', value);
+        socket.emit('filamentStatus', value);
         console.log(chalk.blue(`Led change`));
         LED.writeSync(value);
     })
