@@ -37,3 +37,13 @@ io.on('connection', (socket) => {
         console.log(chalk.blue(`Led change`))
     })
 });
+
+var limitSwitch = new Gpio(17, 'in', 'both');
+
+limitSwitch.watch((err, value) => {
+    if(err) {
+        console.error(chalk.red('There was an error in the limit witch'), err);
+        return;
+    }
+    LED.writeSync(value);
+})
