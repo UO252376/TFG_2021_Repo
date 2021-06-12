@@ -14,8 +14,6 @@ export default class TempCanvas extends React.Component {
     }
     
     initCanvas(context) {
-        context.canvas.width = window.innerWidth * 0.7;
-        context.canvas.height = window.innerHeight * 0.3;
         context.fillStyle = "#FFFFFF";
         context.font= '10px Arial';
         context.fillRect(0,0,context.canvas.width, context.canvas.height);
@@ -32,7 +30,7 @@ export default class TempCanvas extends React.Component {
                     <span>Extrusor <span className="blueBox"></span></span>
                     <span>Cama <span className="greenBox"></span></span>
                 </div>
-                <canvas ref={this.canvasRef} id="tempCanvas" height="300" width="400"></canvas>
+                <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
                 
             </section>
         );
