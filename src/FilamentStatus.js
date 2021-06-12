@@ -1,31 +1,24 @@
 import React from 'react';
+import io from 'socket.io-client';
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {filament : true};
-        this.readSensor = this.readSensor.bind(this);
-        // Esto de momento no
-        //const spawn = require("child_process").spawn;
-        //const pythonProcess = spawn('python',["./python/filamentSensor.py"]);
-
+        this.changeLight = this.changeLight.bind(this); // Button that changes light in raspberry
+        this.socket = io();
+        /*
+        this.socket.on('light', (data) => { // Function that changes color depending on limit switch state
+            this.setState({
+                filament: data==1
+            })
+        })
+        */
     }
 
-    componentDidMount() {
-        this.intervalId = setInterval(
-            () => this.readSensor(),
-            5000
-        );
-    }
-
-    componentWillUnmount(){
-        clearInterval(this.interval);
-    }
-    
-    readSensor() {
-        this.setState((state, props) => ({
-            filament: !state.filament
-        }));
+    changeLight(){
+        this.socket.emit('light', this.lightValue);
+        this.lightValue = this.lightValue == 0 ? 1 : 0;
     }
 
     render() {
@@ -38,6 +31,7 @@ export default class FilamentStatus extends React.Component {
                        <span className="redBox"></span> :
                        <span className="greenBox"></span>
                 }
+                <button onClick={this.changeLight}>Change</button>
             </div>
         );
     }
