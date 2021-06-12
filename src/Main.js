@@ -1,10 +1,13 @@
 import React from 'react';
-import FilamentStatus from './FilamentStatus';
+import io from 'socket.io-client';
+import FilamentStatus from './components/FilamentStatus';
+import MessageLog from './components/MessageLog'
 
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
+		this.socket = io();
 
 		// this.tick = this.tick.bind(this) if you use 'this' in function
 
@@ -26,8 +29,10 @@ export default class Main extends React.Component {
 	render() {
 		return(
 			<div>
-			<header><h1>Información general</h1></header>
-				<FilamentStatus />
+			<header><h1>UO252376 - Controlador impresora</h1></header>
+			<FilamentStatus socket={this.socket} />
+			<MessageLog socket={this.socket} />
+			
 			</div>
 		);
 	}
