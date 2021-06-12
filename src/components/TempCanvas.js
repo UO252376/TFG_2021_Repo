@@ -20,7 +20,7 @@ export default class TempCanvas extends React.Component {
             <section className="tempCanvas">
                 <div className="header">
                     <h3>Temperatura de impresora</h3>
-                    <button onClick={this.showLegend = !this.showLegend}>?</button>
+                    <button onClick={() => this.showLegend = !this.showLegend}>?</button>
                 </div>
                 <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
                 {this.showLegend &&
