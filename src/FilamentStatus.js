@@ -7,11 +7,13 @@ export default class FilamentStatus extends React.Component {
         this.state = {filament : true};
         this.changeLight = this.changeLight.bind(this); // Button that changes light in raspberry
         this.socket = io();
+        /*
         this.socket.on('light', (data) => { // Function that changes color depending on limit switch state
             this.setState({
                 filament: data==1
             })
         })
+        */
     }
 
     changeLight(){
