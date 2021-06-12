@@ -4,7 +4,10 @@ export default class TempCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.canvasRef = React.createRef();
-        this.showLegend = false;
+        this.state = {
+            showLegend: false
+        }
+        this.toggleLegend = this.toggleLegend.bind(this);
     }
 
     componentDidMount() {
@@ -15,12 +18,18 @@ export default class TempCanvas extends React.Component {
         this.context.fillRect(0,0, this.context.canvas.width, this.context.canvas.height);
     }
 
+    toggleLegend() {
+        this.setState((state) => ({
+            showLegend: !state.showLegend
+        }));
+    }
+
     render() {
         return (
             <section className="tempCanvas">
                 <div className="header">
                     <h3>Temperatura de impresora</h3>
-                    <button onClick={() => this.showLegend = !this.showLegend}>?</button>
+                    <button onClick={this.toggleLegend}>?</button>
                 </div>
                 <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
                 {this.showLegend &&
