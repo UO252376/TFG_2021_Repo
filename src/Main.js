@@ -1,7 +1,8 @@
 import React from 'react';
 import io from 'socket.io-client';
 import FilamentStatus from './components/FilamentStatus';
-import MessageLog from './components/MessageLog'
+import MessageLog from './components/MessageLog';
+import TempCanvas from './components/TempCanvas';
 
 export default class Main extends React.Component {
 	constructor(props) {
