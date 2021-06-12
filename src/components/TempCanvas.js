@@ -4,6 +4,7 @@ export default class TempCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.canvasRef = React.createRef();
+        this.showLegend = false;
     }
 
     componentDidMount() {
@@ -19,13 +20,15 @@ export default class TempCanvas extends React.Component {
             <section className="tempCanvas">
                 <div className="header">
                     <h3>Temperatura de impresora</h3>
-                    <button onClick={this.toggleElement}>?</button>
+                    <button onClick={this.showLegend = !this.showLegend}>?</button>
                 </div>
                 <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
-                <div className="leyenda" hidden>
-                    <span>Extrusor <span className="blueBox"></span></span>
-                    <span>Cama <span className="greenBox"></span></span>
-                </div>
+                {this.showLegend &&
+                    <div className="leyenda">
+                        <span>Extrusor <span className="blueBox"></span></span>
+                        <span>Cama <span className="greenBox"></span></span>
+                    </div>
+                }
                 
             </section>
         );
