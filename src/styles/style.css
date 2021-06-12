@@ -73,6 +73,12 @@ section {
     display: flex;
     flex-direction: row;
 }
+
+.tempCanvas .header button {
+    position: absolute;
+    right: 8%;
+    top: 16.5%;
+}
 canvas {
     width: 50%;
     height: 40%;
