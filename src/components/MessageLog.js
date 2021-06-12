@@ -8,14 +8,13 @@ export default class MessageLog extends React.Component {
         this.state = {log: ""};
         this.socket = this.props.socket;
         var nl = '\r\n';
+        this.textlines = [];
         this.socket.on('printerFeed', (data) => {
-            this.props.textlines.push(data);
-            if(this.props.textlines.length >= MAX_LINES){
-                this.props.textlines.shift();
+            this.textlines.push(data);
+            if(this.textlines.length >= MAX_LINES){
+                this.textlines.shift();
             }
-            this.setState((state, props) => ({
-                log: props.textlines.join(nl)
-            }));
+            this.setState({log: this.textlines.join(nl)});
         });
     }
 
