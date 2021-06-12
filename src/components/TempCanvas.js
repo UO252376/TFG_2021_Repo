@@ -25,7 +25,7 @@ export default class TempCanvas extends React.Component {
                     <span>Extrusor <span className="blueBox"></span></span>
                     <span>Cama <span className="greenBox"></span></span>
                 </div>
-                <canvas ref={canvasRef} id="tempCanvas"></canvas>
+                <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
                 
             </section>
         );
