@@ -38,15 +38,14 @@ io.on('connection', (socket) => {
         console.log(chalk.blue(`Led change`));
         socket.emit('light', data);
     });
+});
 
-    limitSwitch.watch((err, value) => {
-        if(err) {
-            console.error(chalk.red('There was an error in the limit witch'), err);
-            return;
-        }
-        LED.writeSync(value);
-        console.log(chalk.blue(`Led change`));
-        socket.emit('light', data);
-    });
+limitSwitch.watch((err, value) => {
+    if(err) {
+        console.error(chalk.red('There was an error in the limit witch'), err);
+        return;
+    }
+    LED.writeSync(value);
+    console.log(chalk.blue(`Led change`));
 });
 
