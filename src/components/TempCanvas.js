@@ -1,5 +1,4 @@
 import React from 'react';
-import { ContextExclusionPlugin } from 'webpack';
 
 export default class TempCanvas extends React.Component {
     constructor(props) {
