@@ -22,7 +22,7 @@ export default class MessageLog extends React.Component {
         return (
             <section className="messageLog">
                 <label>Log</label>
-                <textarea disabled rows="10">{this.state.log}</textarea>
+                <textarea disabled rows="10" value={this.state.log}></textarea>
             </section>
         );
     }
