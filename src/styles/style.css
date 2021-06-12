@@ -1,14 +1,18 @@
 /*---------------------------------- ELEMENTOS GENERALES DE LA PAGINA ---------------------------------------- */
 
 body {
-    background-color: rgb(71, 71, 206);
+    background-color: rgb(13,13,43);
     padding: 0;
     margin: 0;
 }
 
 header {
-    background-color: cornsilk;
+    background-color: rgb(240, 233, 226);
     width: inherit;
+}
+
+span{
+    background-color: rgb(240, 233, 226);
 }
 
 header h1 {
@@ -21,14 +25,14 @@ header h1 {
 }
 
 section {
-    background-color: cornsilk;
+    background-color: rgb(48,53,58);
     margin: 20px;
     align-self: center;
     padding: 10px;
     font-family: Helvetica, Arial, sans-serif;
     width: 80%;
     margin-left: 10%;
-    border: 15px solid rgb(57 67 86);
+    border: 15px solid rgb(54,73,109);
     border-radius: 8px;;
 }
 
@@ -64,6 +68,7 @@ section {
 /*---------------------------------------------------- TEMP CANVAS ------------------------------------------------- */
 .tempCanvas h3{
     text-align: center;
+    background-color: rgb(240, 233, 226)
 }
 
 .tempCanvas .header {
