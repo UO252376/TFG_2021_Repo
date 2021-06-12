@@ -25,7 +25,11 @@ section {
     margin: 20px;
     align-self: center;
     padding: 10px;
-    font-family: Helvetica, Arial, sans-serif; 
+    font-family: Helvetica, Arial, sans-serif;
+    width: 80%;
+    margin-left: 10%;
+    border: 15px solid rgb(57 67 86);
+    border-radius: 8px;;
 }
 
 /*------------------------------------------ SPAN DE COLORES ----------------------------------------------- */
@@ -61,10 +65,22 @@ section {
 }
 
 /*---------------------------------------------------- TEMP CANVAS ------------------------------------------------- */
+.tempCanvas h3{
+    text-align: center;
+}
 
+.tempCanvas .header {
+    display: flex;
+    flex-direction: row;
+}
 canvas {
     width: 50%;
-    height: 41%;
+    height: 40%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block
 }
 
 /*--------------------------------------------------- FILAMENT STATUS ---------------------------------------------- */
