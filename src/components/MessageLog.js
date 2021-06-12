@@ -21,7 +21,7 @@ export default class MessageLog extends React.Component {
     render() {
         return (
             <section className="messageLog">
-                <label>Log</label>
+                <h3>Log</h3>
                 <textarea disabled rows="10" value={this.state.log}></textarea>
             </section>
         );

@@ -19,13 +19,13 @@ export default class FilamentStatus extends React.Component {
         return (
             <section className="filamentStatus">
                 <div>
-                    <span>Filament status: 
+                    <h3>Filament status: 
                     {
                         isFilament ?
                         <span className="spanBox redBox"></span> :
                         <span className="spanBox greenBox"></span>
                     }
-                    </span>
+                    </h3>
                 </div>
             </section>
         );

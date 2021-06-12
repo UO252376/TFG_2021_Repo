@@ -15,6 +15,11 @@ span{
     background-color: rgb(240, 233, 226);
 }
 
+h3{
+    height: 30px;
+    background-color: rgb(240, 233, 226);
+}
+
 header h1 {
     text-transform: uppercase;
     font-family: Helvetica, Arial, sans-serif; 
@@ -68,7 +73,11 @@ section {
 /*---------------------------------------------------- TEMP CANVAS ------------------------------------------------- */
 .tempCanvas h3{
     text-align: center;
-    background-color: rgb(240, 233, 226)
+    background-color: rgb(240, 233, 226);
+    padding: 10px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tempCanvas .header {
