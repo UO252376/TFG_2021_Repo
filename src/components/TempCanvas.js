@@ -10,13 +10,9 @@ export default class TempCanvas extends React.Component {
     componentDidMount() {
         this.canvas = this.canvasRef.current;
         this.context = this.canvas.getContext('2d');
-        this.initCanvas(this.context);
-    }
-    
-    initCanvas(context) {
-        context.fillStyle = "#FFFFFF";
-        context.font= '10px Arial';
-        context.fillRect(0,0,context.canvas.width, context.canvas.height);
+        this.context.fillStyle = "#FFFFFF";
+        this.context.font= '10px Arial';
+        this.context.fillRect(0,0,context.canvas.width, context.canvas.height);
     }
 
     render() {
