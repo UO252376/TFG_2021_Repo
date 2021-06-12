@@ -6,7 +6,6 @@ export default class MessageLog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {log: ""};
-        this.props.textlines = [];
         this.socket = this.props.socket;
         var nl = '\r\n';
         this.socket.on('printerFeed', (data) => {
