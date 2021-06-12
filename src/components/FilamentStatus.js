@@ -22,8 +22,8 @@ export default class FilamentStatus extends React.Component {
                     <span>Filament status: </span>
                     {
                         isFilament ?
-                        <span className="redBox"></span> :
-                        <span className="greenBox"></span>
+                        <span className="spanBox redBox"></span> :
+                        <span className="spanBox greenBox"></span>
                     }
                 </div>
             </section>

@@ -33,25 +33,22 @@ section {
 }
 
 /*------------------------------------------ SPAN DE COLORES ----------------------------------------------- */
+.spanBox{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-bottom: -2;
+}
 
 .redBox {
-    width: 15px;
-    height: 15px;
     background-color: rgb(255, 0, 0);
-    display: inline-block;
 }
 .greenBox {
-    width: 15px;
-    height: 15px;
     background-color: rgb(2, 114, 2);
-    display: inline-block;
 }
 
 .blueBox {
-    width: 15px;
-    height: 15px;
     background-color: rgb(71, 71, 206);
-    display: inline-block;
 }
 
 /*---------------------------------------------------- MESSAGE LOG ------------------------------------------------- */
@@ -86,6 +83,13 @@ canvas {
     margin-left: auto;
     margin-right: auto;
     display: block
+}
+
+.leyenda {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 15px;
 }
 
 /*--------------------------------------------------- FILAMENT STATUS ---------------------------------------------- */

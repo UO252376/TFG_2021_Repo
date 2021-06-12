@@ -34,8 +34,8 @@ export default class TempCanvas extends React.Component {
                 <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
                 {this.state.showLegend &&
                     <div className="leyenda">
-                        <span>Extrusor <span className="blueBox"></span></span>
-                        <span>Cama <span className="greenBox"></span></span>
+                        <span>Extrusor <span className="spanBox blueBox"></span></span>
+                        <span>Cama <span className="spanBox greenBox"></span></span>
                     </div>
                 }
                 
