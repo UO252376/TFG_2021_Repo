@@ -28,9 +28,10 @@ server.listen(port, () => {
 // Especificar peticiones personalizadas:
 
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+const { emit } = require('process');
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var limitSwitch = new Gpio(17, 'in', 'both');
-
+/*
 io.on('connection', (socket) => {
     console.log(chalk.green('a user connected'));
     socket.on('light', (data) => {
@@ -46,6 +47,21 @@ io.on('connection', (socket) => {
         LED.writeSync(value);
         console.log(chalk.blue(`Led change`));
     });
+});
+*/
+
+io.on('connection', (socket) => {
+    console.log(chalk.green("User connected to socket"));
+    socket.emit('filamentStatus', limitSwitch.readSync());
+    limitSwitch.watch((err,value) => {
+        if(err) {
+            console.error(chalk.red('There was an error in the limit witch'), err);
+            return;
+        }
+        emit('filamentStatus', value);
+        console.log(chalk.blue(`Led change`));
+        LED.writeSync(value);
+    })
 });
 
 
