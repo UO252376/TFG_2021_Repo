@@ -16,14 +16,22 @@ export default class TempCanvas extends React.Component {
         context.fillStyle = "#000000";
         context.font= '10px Arial';
         context.fillRect(0,0,context.canvas.width, context.canvas.height);
-        context.fillText("Hello World", 10, 50);
     }
 
     render() {
         return (
-            <div>
-                <canvas id="tempCanvas" height="200" width="300"></canvas>
-            </div>
+            <section className="tempCanvas">
+                <div className="header">
+                    <h3>Temperatura de impresora</h3>
+                    <button>?</button>
+                </div>
+                <div className="leyenda" hidden>
+                    <span>Extrusor <span className="blueBox"></span></span>
+                    <span>Cama <span className="greenBox"></span></span>
+                </div>
+                <canvas id="tempCanvas" height="300" width="400"></canvas>
+                
+            </section>
         );
     }
 }

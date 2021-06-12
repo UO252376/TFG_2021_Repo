@@ -1,3 +1,5 @@
+/*---------------------------------- ELEMENTOS GENERALES DE LA PAGINA ---------------------------------------- */
+
 body {
     width: 100%;
     height: 100%;
@@ -31,22 +33,41 @@ section {
     font-family: Helvetica, Arial, sans-serif; 
 }
 
+/*------------------------------------------ SPAN DE COLORES ----------------------------------------------- */
+
 .redBox {
     width: 15px;
     height: 15px;
-    background-color: red;
+    background-color: rgb(255, 0, 0);
     display: inline-block;
 }
 .greenBox {
     width: 15px;
     height: 15px;
-    background-color: green;
+    background-color: rgb(2, 114, 2);
     display: inline-block;
 }
+
+.blueBox {
+    width: 15px;
+    height: 15px;
+    background-color: rgb(71, 71, 206);
+    display: inline-block;
+}
+
+/*---------------------------------------------------- MESSAGE LOG ------------------------------------------------- */
 
 .messageLog textarea {
     height: 10em;
     overflow-y: scroll;
     resize: none;
     width: 100%;
+    text-transform: uppercase;
 }
+
+/*---------------------------------------------------- TEMP CANVAS ------------------------------------------------- */
+
+
+
+/*--------------------------------------------------- FILAMENT STATUS ---------------------------------------------- */
+
