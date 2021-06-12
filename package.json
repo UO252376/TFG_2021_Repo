@@ -9,6 +9,7 @@
     "babel-preset-react": "^6.24.1",
     "chalk": "^4.1.1",
     "express": "^4.17.1",
+    "increase-memory-limit": "^1.0.7",
     "morgan": "^1.10.0",
     "onoff": "^6.0.3",
     "pg": "^8.6.0",
