@@ -85,6 +85,8 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 
 socketIoAuth(io, {authenticate, postAuthenticate});
 
+/*
 server.listen(port, () => {
     console.log(chalk.blue(`Socket.io listening on port ${port}`));
 });
+*/
