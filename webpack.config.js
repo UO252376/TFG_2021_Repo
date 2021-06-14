@@ -22,23 +22,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: [ 
-            ['@babel/preset-env',
-              {
-                "targets": {
-                  "browsers": [
-                    ">0.25%",
-                    "not ie 11",
-                    "not op_mini all"
-                  ]
-                }
-              }
+            presets: [
+                '@babel/preset-env',
+                '@babel/preset-react'
             ],
-            '@babel/preset-react'
-          ],
-          "plugins": [
-            "@babel/plugin-transform-runtime"
-          ]
+            plugins: [
+                '@babel/transform-runtime'
+            ]
         }
       }, {
         test: /\.css?$/,
