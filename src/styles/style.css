@@ -128,3 +128,12 @@ canvas {
     width: 60px;
     height: 30px;
 }
+
+/*---------------------------------------------------- LOGIN PANEL ------------------------------------------------- */
+
+.loginPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(240, 233, 226);
+}
