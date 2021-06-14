@@ -50,7 +50,7 @@ export default class Login extends React.Component {
 }
 
 async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
+    return fetch('http://192.168.1.21/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
