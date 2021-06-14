@@ -22,10 +22,10 @@ export default class Login extends React.Component {
     render() {
         return (			
         <div>
-            <header class="login">
+            <header className="login">
                 <button>-+-</button>
             </header>
-            <div class="loginPanel">
+            <div className="loginPanel">
                 <h1>¡Bienvenido!</h1>
                 <div>
                     <label>Usuario:
