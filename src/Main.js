@@ -5,6 +5,7 @@ import MessageLog from './components/MessageLog';
 import TempCanvas from './components/TempCanvas';
 import ControlPanel from './components/ControlPanel';
 import Login from './components/Login';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 export default class Main extends React.Component {
