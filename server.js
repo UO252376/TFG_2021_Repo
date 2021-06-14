@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
     });    
     socket.on('shutdown', () => {
         setTimeout(() => {
-            relay.writeSync(1)    
+            relay.writeSync(0)    
         }, 500);
         setTimeout(() => {
             relay.writeSync(1)    
