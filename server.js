@@ -48,13 +48,7 @@ io.on('connection', (socket) => {
     });
     socket.on('shutdown', () => {
         relay.writeSync(1);    
-        exec('sh /usr/local/bin/reboot.sh', function(error, stdout, stderr) {
-            console.log('stdout: ' + stdout);
-            console.log('stderr: ' + stderr);
-            if (error !== null) {
-                console.log('exec error: ' + error);
-            }
-        });
+        setTimeout(() => relay.writeSync(0), 200);
     });
 });
 
