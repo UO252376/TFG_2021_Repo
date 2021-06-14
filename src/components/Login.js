@@ -8,6 +8,7 @@ export default class Login extends React.Component {
             username: "",
             password: ""
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     change(event) {
@@ -15,8 +16,19 @@ export default class Login extends React.Component {
         console.log(this.state);
     }
 
-    login() {
-        // Submit
+    async loginUser(credentials) {
+        return fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+        }).then(data => data.json());
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.setToken(await this.loginUser(this.state));
     }
 
     render() {
@@ -27,7 +39,7 @@ export default class Login extends React.Component {
             </header>
             <div className="loginPanel">
                 <h1>¡Bienvenido!</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>Usuario:
                         <input type="text" name="username" placeholder="Usuario" value={this.state.username} onChange={this.change}/>
                     </label>
@@ -35,7 +47,7 @@ export default class Login extends React.Component {
                         <input type="password" name="password" placeholder="Contraseña" value={this.state.password} onChange={this.change}/>
                     </label>
                     <div>
-                        <button type="submit" onClick={this.login}>Entrar</button>
+                        <button type="submit">Entrar</button>
                     </div>
                 </form>
             </div>

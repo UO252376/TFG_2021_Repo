@@ -11,6 +11,11 @@ const morgan = require('morgan');
 //Static Routes
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(morgan('dev')) // logging
+app.use('/login', (req, res) => { // Request from the client
+    res.send({
+        token: 'test'
+    });
+});
 //Main App Route
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
 
