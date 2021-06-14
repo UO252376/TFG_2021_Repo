@@ -29,10 +29,10 @@ export default class Login extends React.Component {
                 <h1>¡Bienvenido!</h1>
                 <div>
                     <label>Usuario:
-                        <input type="text" name="username" placeholder="Usuario" value={this.state.username} onChange={this.change} fluid/>
+                        <input type="text" name="username" placeholder="Usuario" value={this.state.username} onChange={this.change}/>
                     </label>
                     <label>Contraseña:
-                        <input type="password" name="password" placeholder="Contraseña" value={this.state.password} onChange={this.change} fluid />
+                        <input type="password" name="password" placeholder="Contraseña" value={this.state.password} onChange={this.change}/>
                     </label>
                 </div>
                 <div>
