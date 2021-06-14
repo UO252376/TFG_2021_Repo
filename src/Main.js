@@ -8,34 +8,31 @@ import ControlPanel from './components/ControlPanel';
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {login: false};
 		this.socket = io();
 
-		// this.tick = this.tick.bind(this) if you use 'this' in function
-
-
-	}
-
-	componentDidMount() { // Set interval on mount if necesary
-
-	}
-
-	componentWillUnmount() { // Clear interval on unmount if set
-
-	}
-
-	tick() { // Function to call on intervall. Use setState to update components.
-		// this.setState({var: newValue})
+		this.socket.on('loginResponse', (data) => {
+			this.setState({
+				login: data.login
+			});
+		});
 	}
 
 	render() {
 		return(
 			<div>
-			<header><h1>UO252376 - Controlador impresora</h1></header>
-			<TempCanvas socket={this.socket}/>
-			<FilamentStatus socket={this.socket} />
-			<ControlPanel socket={this.socket} />
-			<MessageLog socket={this.socket} />
+			<header><h1>UO252376 - Controlador impresora</h1> {this.state.login && <button>Salir</button>}</header>
+			{this.state.login &&
+				<div>
+					<TempCanvas socket={this.socket}/>
+					<FilamentStatus socket={this.socket} />
+					<ControlPanel socket={this.socket} />
+					<MessageLog socket={this.socket} />
+				</div>
+			}
+			{!this.state.login &&
+				<Login socket={this.socket}/>
+			}
 			
 			</div>
 		);
