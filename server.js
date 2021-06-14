@@ -46,9 +46,9 @@ io.on('connection', (socket) => {
         LED.writeSync(value);
     });    
     socket.on('shutdown', (data) => {
-        relay.writeSync(1);
+        relay.writeSync(0);
         setTimeout(() => {
-            relay.writeSync(0)    
+            relay.writeSync(1)    
         }, 500);
     });
 });
