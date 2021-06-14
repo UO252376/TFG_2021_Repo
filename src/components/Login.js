@@ -9,6 +9,7 @@ export default class Login extends React.Component {
             password: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.change = this.change.bind(this);
     }
 
     change(event) {
