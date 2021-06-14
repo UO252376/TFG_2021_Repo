@@ -5,7 +5,6 @@ import MessageLog from './components/MessageLog';
 import TempCanvas from './components/TempCanvas';
 import ControlPanel from './components/ControlPanel';
 import Login from './components/Login';
-var relay = new Gpio(18, 'low');
 
 
 export default class Main extends React.Component {
