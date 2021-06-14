@@ -5,6 +5,8 @@ import MessageLog from './components/MessageLog';
 import TempCanvas from './components/TempCanvas';
 import ControlPanel from './components/ControlPanel';
 import Login from './components/Login';
+var relay = new Gpio(18, 'low');
+
 
 export default class Main extends React.Component {
 	constructor(props) {
@@ -21,21 +23,23 @@ export default class Main extends React.Component {
 
 	render() {
 		return(
-			<div>
-			<header><h1>UO252376 - Controlador impresora</h1> {this.state.login && <button>Salir</button>}</header>
-			{this.state.login &&
-				<div>
-					<TempCanvas socket={this.socket}/>
-					<FilamentStatus socket={this.socket} />
-					<ControlPanel socket={this.socket} />
-					<MessageLog socket={this.socket} />
-				</div>
-			}
-			{!this.state.login &&
-				<Login socket={this.socket}/>
-			}
-			
-			</div>
+		<div className="wrapper">
+			<BrowserRouter>
+				<Switch>
+					<Route path="/login">
+						<header><h1>UO252376 - Controlador impresora</h1></header>
+						<Login></Login>
+					</Route>
+					<Route path="/dashboard">
+						<header><h1>UO252376 - Controlador impresora</h1><button>Salir</button></header>
+						<TempCanvas socket={this.socket}/>
+						<FilamentStatus socket={this.socket} />
+						<ControlPanel socket={this.socket} />
+						<MessageLog socket={this.socket} />
+					</Route>
+				</Switch>
+			</BrowserRouter>
+		</div>
 		);
 	}
 }
