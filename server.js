@@ -5,6 +5,7 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+const ioAuth = require("socketio-auth");
 const path = require('path');
 const chalk = require('chalk');
 const morgan = require('morgan');
