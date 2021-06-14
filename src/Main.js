@@ -10,18 +10,18 @@ import Login from './components/Login';
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = { token: null}
 		this.socket = io();
+		this.setToken = this.setToken.bind(this);
+	}
 
-		var [token, setToken] = useState();
-		this.token = token;
-		this.setToken = setToken.bind(this);
-		
+	setToken(val){
+		this.setState({token: val});
 	}
 
 	render() {
 
-		if(!this.token){
+		if(!this.state.token){
 			return(
 				<div className="wrapper">
 					<header><h1>UO252376 - Controlador impresora</h1></header>

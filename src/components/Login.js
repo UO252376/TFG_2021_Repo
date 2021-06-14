@@ -3,7 +3,7 @@ import React from 'react';
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.socket = props.socket;
+        this.setToken = props.setToken;
         this.state = {
             username: "",
             password: ""
