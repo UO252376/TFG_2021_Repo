@@ -47,12 +47,14 @@ io.on('connection', (socket) => {
         LED.writeSync(value);
     });
     socket.on('shutdown', () => {
-        setTimeout(() => {
-            relay.writeSync(1);    
-        }, 500);
-        setTimeout(() => {
-            relay.writeSync(0);   
-        }, 1000);
+        relay.writeSync(1);    
+        exec('sh /usr/local/bin/reboot.sh', function(error, stdout, stderr) {
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+            if (error !== null) {
+                console.log('exec error: ' + error);
+            }
+        });
     });
 });
 
