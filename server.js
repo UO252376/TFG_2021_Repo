@@ -30,9 +30,9 @@ server.listen(port, () => {
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 const { emit } = require('process');
 const { setInterval } = require('timers');
-var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
+var LED = new Gpio(4, 'high'); //use GPIO pin 4 as output
 var limitSwitch = new Gpio(17, 'in', 'both');
-// var relay = new Gpio(18, 'high');
+var relay = new Gpio(18, 'low');
 
 io.on('connection', (socket) => {
     console.log(chalk.green("User connected to socket"));
@@ -46,16 +46,14 @@ io.on('connection', (socket) => {
         console.log(chalk.blue('Led change tocvalue: ${value}'));
         LED.writeSync(value);
     });
-    /* 
     socket.on('shutdown', () => {
         setTimeout(() => {
-            relay.writeSync(0);    
+            relay.writeSync(1);    
         }, 500);
         setTimeout(() => {
-            relay.writeSync(1);   
+            relay.writeSync(0);   
         }, 1000);
     });
-    */
 });
 
 
