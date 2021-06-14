@@ -4,6 +4,7 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+const socketIoAuth = require("socketio-auth");
 const io = new Server(server);
 const path = require('path');
 const chalk = require('chalk');
@@ -20,7 +21,7 @@ const port = 1337;
 
 //Run Server
 //app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
-
+socketIoAuth(io, {authenticate, postAuthenticate});
 server.listen(port, () => {
     console.log(chalk.blue(`Socket.io listening on port ${port}`))
 });
