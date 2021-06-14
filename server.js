@@ -50,4 +50,41 @@ io.on('connection', (socket) => {
     });
 });
 
+// AUTENTICACIÓN DE USUARIO
+
+async function authenticate (socket, data, callback) {
+    // const {username, password} = data;
+    try {
+        // var user = null; // find user in database
+        callback(null, () => {
+            socket.emit('loginResponse', { login: true /* user  && user.hashedPassword === */} );
+            return true /* user  && user.hashedPassword === */;
+        });
+    } catch (error) {
+        callback(error);
+    }
+}
+
+// ACCIONES DE USUARIO
+function postAuthenticate(socket) {
+    // FILAMENT STATUS
+    socket.emit('filamentStatus', limitSwitch.readSync());
+    limitSwitch.watch((err,value) => {
+        if(err) {
+            console.error(chalk.red(`There was an error in the limit witch`), err);
+            return;
+        }
+        socket.emit('filamentStatus', value);
+        console.log(chalk.blue(`Led change tocvalue: ${value}`));
+        LED.writeSync(value);
+    });
+
+    // SHUTDOWN
+    socket.on('shutdown', () => {
+        relay.writeSync(1);    
+        setTimeout(() => relay.writeSync(0), 200);
+    });
+
+}
+
 
