@@ -4,6 +4,7 @@ import FilamentStatus from './components/FilamentStatus';
 import MessageLog from './components/MessageLog';
 import TempCanvas from './components/TempCanvas';
 import ControlPanel from './components/ControlPanel';
+import Login from './components/Login';
 
 export default class Main extends React.Component {
 	constructor(props) {
