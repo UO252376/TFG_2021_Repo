@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import FilamentStatus from './components/FilamentStatus';
 import MessageLog from './components/MessageLog';
 import TempCanvas from './components/TempCanvas';
+import ControlPanel from './components/ControlPanel';
 
 export default class Main extends React.Component {
 	constructor(props) {
@@ -33,6 +34,7 @@ export default class Main extends React.Component {
 			<header><h1>UO252376 - Controlador impresora</h1></header>
 			<TempCanvas socket={this.socket}/>
 			<FilamentStatus socket={this.socket} />
+			<ControlPanel socket={this.socket} />
 			<MessageLog socket={this.socket} />
 			
 			</div>

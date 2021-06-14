@@ -1,6 +1,5 @@
 import React from 'react';
 import io from 'socket.io-client';
-const MAX_LINES = 100;
 
 export default class MessageLog extends React.Component {
     constructor(props) {
