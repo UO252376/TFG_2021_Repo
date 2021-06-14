@@ -31,24 +31,7 @@ var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 const { emit } = require('process');
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var limitSwitch = new Gpio(17, 'in', 'both');
-/*
-io.on('connection', (socket) => {
-    console.log(chalk.green('a user connected'));
-    socket.on('light', (data) => {
-        LED.writeSync(data);
-        console.log(chalk.blue(`Led change`));
-    });
-
-    limitSwitch.watch((err, value) => {
-        if(err) {
-            console.error(chalk.red('There was an error in the limit witch'), err);
-            return;
-        }
-        LED.writeSync(value);
-        console.log(chalk.blue(`Led change`));
-    });
-});
-*/
+var relay = new Gpio(17, 'out');
 
 io.on('connection', (socket) => {
     console.log(chalk.green("User connected to socket"));
@@ -61,7 +44,11 @@ io.on('connection', (socket) => {
         socket.emit('filamentStatus', value);
         console.log(chalk.blue('Led change tocvalue: ${value}'));
         LED.writeSync(value);
-    })
+    });    
+    socket.on('shutdown', (data) => {
+        relay.writeSync(1);
+        relay.writeSync(0);
+    });
 });
 
 

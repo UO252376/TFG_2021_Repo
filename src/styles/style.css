@@ -108,3 +108,23 @@ canvas {
 
 /*--------------------------------------------------- FILAMENT STATUS ---------------------------------------------- */
 
+
+/*---------------------------------------------------- CONTROL PANEL ----------------------------------------------- */
+
+.controlPanel{
+    display:flex;
+    flex-direction: column;
+    height: 100px;
+}
+
+.controlPanel div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.controlPanel button {
+    width: 60px;
+    height: 30px;
+}
