@@ -10,7 +10,8 @@ export default class ControlPanel extends React.Component {
     }
 
     shutDown() {
-        this.socket.emit('shutdown', 1);
+        console.log("Lanzando shutdown");
+        this.socket.emit('shutdown');
     }
 
     render() {

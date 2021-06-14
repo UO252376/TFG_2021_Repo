@@ -45,11 +45,13 @@ io.on('connection', (socket) => {
         console.log(chalk.blue('Led change tocvalue: ${value}'));
         LED.writeSync(value);
     });    
-    socket.on('shutdown', (data) => {
-        relay.writeSync(0);
+    socket.on('shutdown', () => {
         setTimeout(() => {
             relay.writeSync(1)    
         }, 500);
+        setTimeout(() => {
+            relay.writeSync(1)    
+        }, 1000);
     });
 });
 
