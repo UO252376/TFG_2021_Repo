@@ -6,7 +6,7 @@ export default class ControlPanel extends React.Component {
     constructor(props) {
         super(props);
         this.socket = this.props.socket;
-        this.shutDown = this.shudDown.bind(this)
+        this.shutDown = this.shutDown.bind(this)
     }
 
     shutDown() {
