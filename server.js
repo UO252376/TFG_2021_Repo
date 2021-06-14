@@ -32,7 +32,7 @@ const { emit } = require('process');
 const { setInterval } = require('timers');
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var limitSwitch = new Gpio(17, 'in', 'both');
-var relay = new Gpio(18, 'high');
+// var relay = new Gpio(18, 'high');
 
 io.on('connection', (socket) => {
     console.log(chalk.green("User connected to socket"));
@@ -57,10 +57,5 @@ io.on('connection', (socket) => {
     });
     */
 });
-
-setInterval(() => {
-    relay.unexport();
-    setTimeout(() => new Gpio(18, 'high'), 1000);
-}, 5000)
 
 
