@@ -16,19 +16,11 @@ export default class Login extends React.Component {
         console.log(this.state);
     }
 
-    async loginUser(credentials) {
-        return fetch('http://localhost:8080/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        }).then(data => data.json());
-    }
+
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setToken(await this.loginUser(this.state));
+        this.setToken(await loginUser(this.state));
     }
 
     render() {
@@ -54,4 +46,14 @@ export default class Login extends React.Component {
         </div>
         );
     }
+}
+
+async function loginUser(credentials) {
+    return fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    }).then(data => data.json());
 }
