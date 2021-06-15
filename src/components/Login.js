@@ -52,14 +52,14 @@ export default class Login extends React.Component {
 }
 
 async function loginUser(credentials) {
-    return fetch('http://192.168.1.21/login', {
+    var response = await fetch('http://192.168.1.21/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-    body: JSON.stringify(credentials)
-    }).then(data => {
-        console.log(data);
-        data.json()
+        body: JSON.stringify(data)
     });
+    console.log(response);
+    console.log(response.json());
+    return response.json();
 }
