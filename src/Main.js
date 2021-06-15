@@ -57,7 +57,7 @@ export default class Main extends React.Component {
 					<div>
 						<header><h1>UO252376 - Controlador impresora</h1><div><button>Salir</button></div></header>
 						<TempCanvas socket={this.socket}/>
-						<FilamentStatus socket={this.socket} data={this.state.data}/>
+						<FilamentStatus socket={this.socket} data={this.state.data} key={this.state.data}/>
 						<ControlPanel socket={this.socket} />
 						<MessageLog socket={this.socket} />
 					</div>
