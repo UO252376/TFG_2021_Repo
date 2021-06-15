@@ -10,7 +10,7 @@ import Login from './components/Login';
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { token: null};
+		this.state = { token: null, data = null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
 	}
@@ -19,8 +19,7 @@ export default class Main extends React.Component {
 		this.socket = io();
 		this.getToken();
 		this.socket.on("initialSetup", (data) => {
-			console.log('initialSetup');
-			console.log(data);
+			this.setState({data: data});
 		})
 	}
 
@@ -57,7 +56,7 @@ export default class Main extends React.Component {
 					<div>
 						<header><h1>UO252376 - Controlador impresora</h1><div><button>Salir</button></div></header>
 						<TempCanvas socket={this.socket}/>
-						<FilamentStatus socket={this.socket}/>
+						<FilamentStatus socket={this.socket} data={this.state.data}/>
 						<ControlPanel socket={this.socket} />
 						<MessageLog socket={this.socket} />
 					</div>
