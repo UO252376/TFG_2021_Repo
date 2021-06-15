@@ -22,7 +22,7 @@ export default class Login extends React.Component {
         event.preventDefault();
         await loginUser(this.state).then((resp) => {
             console.log(resp);
-            this.props.setToken(resp);
+            this.props.setToken(resp.token);
             console.log(resp);
         });
     }
