@@ -40,7 +40,7 @@ var relay = new Gpio(18, 'low');
 io.on('connection', (socket) => {
     console.log(chalk.green("User connected to socket"));
     socket.emit('initialSetup', {
-        filament: limitSwitch.readSync()
+        filament: ''+limitSwitch.readSync()
     });
     limitSwitch.watch((err,value) => {
         if(err) {
