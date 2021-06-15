@@ -32,7 +32,7 @@ export default class TempCanvas extends React.Component {
                     <button onClick={this.toggleLegend}>?</button>
                 </div>
                 <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
-                <div className={"leyenda"  + (!this.state.showLegend && "hide")}>
+                <div className={"leyenda "  + (!this.state.showLegend ? "" : "hide")}>
                     <span>Extrusor <span className="spanBox blueBox"></span></span>
                     <span>Cama <span className="spanBox greenBox"></span></span>
                 </div>
