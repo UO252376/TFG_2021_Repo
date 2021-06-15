@@ -19,8 +19,9 @@ export default class Main extends React.Component {
 	componentDidMount() {
 		this.socket = io();
 		this.socket.on('initialSetup', (data) => {
-			console.log(data);
-			this.setState(data);
+			this.setState({
+				data: data}
+			);
 		});
 		this.getToken();
 	}
@@ -58,7 +59,7 @@ export default class Main extends React.Component {
 					<div>
 						<header><h1>UO252376 - Controlador impresora</h1><div><button>Salir</button></div></header>
 						<TempCanvas socket={this.socket}/>
-						<FilamentStatus socket={this.socket} />
+						<FilamentStatus socket={this.socket} filament={this.state.data.filament} />
 						<ControlPanel socket={this.socket} />
 						<MessageLog socket={this.socket} />
 					</div>
