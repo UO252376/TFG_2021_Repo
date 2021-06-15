@@ -22,7 +22,7 @@ export default class Login extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         var token = await loginUser(this.state)
-        this.setToken(resp);
+        this.setToken(token);
     }
 
     render() {
