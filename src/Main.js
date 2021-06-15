@@ -14,10 +14,13 @@ export default class Main extends React.Component {
 		this.socket;
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
+		this.socket = io();
+		this.socket.on('initialSetup', (data) => {
+			this.setState(data);
+		});
 	}
 
 	componentDidMount() {
-		this.socket = io();
 		this.getToken();
 	}
 

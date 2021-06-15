@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {filament : null};
+        this.state = {filament : props.filament};
         this.socket = this.props.socket;
         this.socket.on('filamentStatus', (data) => { // Function that changes color depending on limit switch state
             console.log("Socket event: filamentStatus " + data);
