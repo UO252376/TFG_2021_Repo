@@ -31,7 +31,7 @@ export default class Main extends React.Component {
 		}
 		return(
 			<div className="wrapper">
-				<header><h1>UO252376 - Controlador impresora</h1><button>Salir</button></header>
+				<header><h1>UO252376 - Controlador impresora</h1><div><button>Salir</button></div></header>
 				<TempCanvas socket={this.socket}/>
 				<FilamentStatus socket={this.socket} />
 				<ControlPanel socket={this.socket} />
