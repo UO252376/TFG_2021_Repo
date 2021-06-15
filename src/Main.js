@@ -27,7 +27,7 @@ export default class Main extends React.Component {
 
 	getToken() {
 		var tokenStr = sessionStorage.getItem('token');
-		this.setToken(JSON.parse(tokenStr)?.token)
+		if(token) this.setToken(JSON.parse(tokenStr)?.token);
 	}
 
 	render() {
