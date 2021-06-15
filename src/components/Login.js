@@ -58,8 +58,9 @@ async function loginUser(credentials) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(credentials)
+    }).then((resp) => {
+        console.log(resp);
+        return resp;
     });
-    console.log(response);
-    console.log(response.json());
-    return response.json();
+    return response;
 }
