@@ -6,12 +6,12 @@ export default class FilamentStatus extends React.Component {
         super(props);
         this.state = {filament : false};
         this.socket = this.props.socket;
-        console.log(props.data);
+        console.log(this.props.data);
     }
     
     componentDidMount() {
         console.log("after mount");
-        console.log(props.data);
+        console.log(this.props.data);
         this.socket.on('filamentStatus', (data) => { // Function that changes color depending on limit switch state
             console.log("Socket event: filamentStatus " + data);
             this.setState({
