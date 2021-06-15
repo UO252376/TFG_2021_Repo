@@ -24,10 +24,12 @@ export default class Main extends React.Component {
 			);
 		});
 		this.getToken();
+		window.addEventListener('beforeunload', this.socket.disconnect());
 	}
 	
 	componentWillUnmount() {
 		this.socket.disconnect();
+		window.removeEventListener('beforeunload');
 	}
 
 	setToken(val){
