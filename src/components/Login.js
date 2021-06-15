@@ -3,7 +3,6 @@ import React from 'react';
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.setToken = props.setToken;
         this.state = {
             username: "",
             password: ""
@@ -22,7 +21,7 @@ export default class Login extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         var token = await loginUser(this.state)
-        this.setToken(token);
+        this.props.setToken(token);
     }
 
     render() {
