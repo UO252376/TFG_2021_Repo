@@ -7,9 +7,8 @@ export default class FilamentStatus extends React.Component {
         this.state = {filament : false};
         this.socket = this.props.socket;
         console.log(this.props.data);
-    }
-    
-    componentDidMount() {
+
+        
         console.log("socket")
         console.log(this.socket)
         console.log("after mount");
@@ -20,6 +19,9 @@ export default class FilamentStatus extends React.Component {
                 filament: data!=1
             });
         });
+    }
+    
+    componentDidMount() {
     }
 
     render() {
