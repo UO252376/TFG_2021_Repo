@@ -13,17 +13,15 @@ export default class Main extends React.Component {
 		this.state = { token: null, data: null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
-		//if(this.socket)
-			//this.socket.disconnect();
+	}
+
+	componentDidMount() {
 		this.socket = io();
+		this.getToken();
 		this.socket.on("initialSetup", (data) => {
 			console.log("initialSetup")
 			this.setState({data: data});
 		});
-	}
-
-	componentDidMount() {
-		this.getToken();
 	}
 
 	setToken(val){
