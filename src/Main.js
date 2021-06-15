@@ -13,6 +13,7 @@ export default class Main extends React.Component {
 		this.state = { token: null, data: null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
+		this.logout = this.logout.bind(this);
 	}
 
 	componentDidMount() {
@@ -27,14 +28,19 @@ export default class Main extends React.Component {
 
 	setToken(val){
 		if(val){
-			sessionStorage.setItem('token', JSON.stringify(val));
+			localStorage.setItem('token', JSON.stringify(val));
 			this.setState({token: val});
 		}
 	}
 
 	getToken() {
-		var tokenStr = sessionStorage.getItem('token');
+		var tokenStr = localStorage.getItem('token');
 		if(tokenStr) this.setToken(JSON.parse(tokenStr));
+	}
+
+	logout() {
+		this.setState({token: null});
+		localStorage.removeItem('token');
 	}
 
 	render() {
@@ -56,7 +62,7 @@ export default class Main extends React.Component {
 					</div>
 					: this.state.data &&
 						<div>
-							<header><h1>UO252376 - Controlador impresora</h1><div><button>Salir</button></div></header>
+							<header><h1>UO252376 - Controlador impresora</h1><div><button onClick={this.logout}>Salir</button></div></header>
 							<TempCanvas socket={this.socket}/>
 							<FilamentStatus socket={this.socket} data={this.state.data}/>
 							<ControlPanel socket={this.socket} />
