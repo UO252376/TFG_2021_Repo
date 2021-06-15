@@ -18,6 +18,10 @@ export default class Main extends React.Component {
 	componentDidMount() {
 		this.socket = io();
 		this.getToken();
+		this.socket.on("initialSetup", (data) => {
+			console.log('initialSetup');
+			console.log(data);
+		})
 	}
 
 	setToken(val){
