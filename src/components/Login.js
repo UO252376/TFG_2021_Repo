@@ -62,5 +62,6 @@ async function loginUser(credentials) {
     }).then((resp) => {
         return resp.json();
     });
+    console.log(response);
     return response;
 }
