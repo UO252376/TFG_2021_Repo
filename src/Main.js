@@ -13,22 +13,11 @@ export default class Main extends React.Component {
 		this.state = { token: null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
-		this.socket = io();
-		this.socket.on('initialSetup', (data) => {
-			this.setState({
-				data: data}
-			);
-		});
 	}
 
 	componentDidMount() {
+		this.socket = io();
 		this.getToken();
-		window.addEventListener('beforeunload', this.socket.disconnect());
-	}
-	
-	componentWillUnmount() {
-		this.socket.disconnect();
-		window.removeEventListener('beforeunload');
 	}
 
 	setToken(val){
@@ -64,7 +53,7 @@ export default class Main extends React.Component {
 					<div>
 						<header><h1>UO252376 - Controlador impresora</h1><div><button>Salir</button></div></header>
 						<TempCanvas socket={this.socket}/>
-						<FilamentStatus socket={this.socket} filament={this.state.data} />
+						<FilamentStatus socket={this.socket}/>
 						<ControlPanel socket={this.socket} />
 						<MessageLog socket={this.socket} />
 					</div>

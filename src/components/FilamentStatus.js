@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {filament : props.data.filament==1};
+        this.state = {filament : false};
         this.socket = this.props.socket;
     }
     
