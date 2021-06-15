@@ -11,12 +11,13 @@ export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { token: null}
-		this.socket = io();
+		this.socket;
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
 	}
 
 	componentDidMount() {
+		this.socket = io();
 		this.getToken();
 	}
 
