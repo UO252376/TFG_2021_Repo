@@ -10,19 +10,18 @@ import Login from './components/Login';
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { token: null}
-		this.socket;
+		this.state = { token: null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
-	}
-
-	componentDidMount() {
 		this.socket = io();
 		this.socket.on('initialSetup', (data) => {
 			this.setState({
 				data: data}
 			);
 		});
+	}
+
+	componentDidMount() {
 		this.getToken();
 	}
 
