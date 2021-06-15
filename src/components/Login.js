@@ -60,8 +60,8 @@ async function loginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     }).then((resp) => {
-        console.log(resp);
-        return resp;
+        console.log(resp.json());
+        return resp.json();
     });
     return response;
 }
