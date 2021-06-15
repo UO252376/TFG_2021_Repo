@@ -10,19 +10,24 @@ import Login from './components/Login';
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { token: null};
+		this.state = { token: null}
+		this.socket;
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
+	}
+
+	componentDidMount() {
 		this.socket = io();
 		this.socket.on('initialSetup', (data) => {
 			this.setState({
 				data: data}
 			);
 		});
-	}
-
-	componentDidMount() {
 		this.getToken();
+	}
+	
+	componentWillUnmount() {
+		this.socket.disconnect();
 	}
 
 	setToken(val){
@@ -58,7 +63,7 @@ export default class Main extends React.Component {
 					<div>
 						<header><h1>UO252376 - Controlador impresora</h1><div><button>Salir</button></div></header>
 						<TempCanvas socket={this.socket}/>
-						<FilamentStatus socket={this.socket} filament={this.state.data.filament} />
+						<FilamentStatus socket={this.socket} filament={this.state.data} />
 						<ControlPanel socket={this.socket} />
 						<MessageLog socket={this.socket} />
 					</div>
