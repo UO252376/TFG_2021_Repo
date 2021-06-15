@@ -12,7 +12,7 @@ export default class FilamentStatus extends React.Component {
         this.socket.on('filamentStatus', (data) => { // Function that changes color depending on limit switch state
             console.log("Socket event: filamentStatus " + data);
             this.setState({
-                filament: data==1
+                filament: data!=1
             });
         });
     }
@@ -25,8 +25,9 @@ export default class FilamentStatus extends React.Component {
                     <h3>Filament status: 
                     {
                         isFilament ?
-                        <span className="spanBox redBox"></span> :
-                        <span className="spanBox greenBox"></span>
+                        <span className="spanBox greenBox"></span>:
+
+                        <span className="spanBox redBox"></span>
                     }
                     </h3>
                 </div>
