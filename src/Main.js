@@ -10,7 +10,7 @@ import Login from './components/Login';
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { token: null, data = null};
+		this.state = { token: null, data: null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
 	}
