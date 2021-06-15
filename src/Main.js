@@ -21,7 +21,7 @@ export default class Main extends React.Component {
 	}
 
 	setToken(val){
-		this.setState({token: val});
+		this.setState({token: val.token});
 		if(val){
 			sessionStorage.setItem('token', JSON.stringify(val));
 		}
