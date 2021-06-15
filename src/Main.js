@@ -21,6 +21,7 @@ export default class Main extends React.Component {
 		this.socket.on("initialSetup", (data) => {
 			console.log("initialSetup")
 			this.setState({data: data});
+			console.log(data);
 		});
 	}
 
