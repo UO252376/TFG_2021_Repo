@@ -14,12 +14,13 @@ header {
 }
 
 header div {
-    display: flex end;
+    display: flex;
     flex-direction: column;
+    justify-content: flex-end;
 }
 
 header button {
-    height: 30px;
+    height: 40px;
 }
 
 span{
@@ -115,6 +116,10 @@ canvas {
     flex-direction: row;
     justify-content: space-evenly;
     margin: 15px;
+}
+
+.hide {
+    display: none;
 }
 
 /*--------------------------------------------------- FILAMENT STATUS ---------------------------------------------- */
