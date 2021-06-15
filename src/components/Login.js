@@ -19,9 +19,10 @@ export default class Login extends React.Component {
 
 
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
-        loginUser(this.state).then(resp => this.setToken(resp), err => console.log(err));
+        var token = await loginUser(this.state)
+        this.setToken(resp);
     }
 
     render() {
@@ -55,7 +56,7 @@ async function loginUser(credentials) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(credentials)
+    body: JSON.stringify(credentials)
     }).then(data => {
         console.log(data);
         data.json()
