@@ -16,11 +16,13 @@ export default class Main extends React.Component {
 	}
 
 	componentDidMount() {
+		if(this.socket)
+			this.socket.disconnect();
 		this.socket = io();
 		this.getToken();
 		this.socket.on("initialSetup", (data) => {
 			this.setState({data: data});
-		})
+		});
 	}
 
 	setToken(val){
