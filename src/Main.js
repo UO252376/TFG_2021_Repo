@@ -13,10 +13,21 @@ export default class Main extends React.Component {
 		this.state = { token: null}
 		this.socket = io();
 		this.setToken = this.setToken.bind(this);
+		this.getToken = this.getToken.bind(this);
+	}
+
+	componentDidMount() {
+		this.getToken();
 	}
 
 	setToken(val){
 		this.setState({token: val});
+		sessionStorage.setItem('token', JSON.stringify(val));
+	}
+
+	getToken() {
+		var tokenStr = sessionStorage.getItem('token');
+		this.setToken(JSON.parse(tokenStr)?.token)
 	}
 
 	render() {
