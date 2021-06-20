@@ -13,16 +13,16 @@ const db = require('./Postgres');
 app.use(express.json());
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(morgan('dev')) // logging
-/*
-app.use('/login', (req, res) => { // Request from the client
-    res.send({
-        token: 'test'
-    });
-});
-*/
 
 app.use('/login', (req, res) => {
     db.checkUserExists(req.body, res);
+});
+
+app.use('/hash', (req, res) => {
+    const bcrypt = require('bcrypt');
+    bcrypt.hash("!TFG2021", 10).then(resp => {
+        res.status(200).send(resp);
+    });
 });
 
 //Main App Route
