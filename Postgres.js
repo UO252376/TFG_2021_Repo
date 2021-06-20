@@ -14,6 +14,8 @@ function checkUserExists(params, response) {
     //response.status(200).json({user: username});
     
     pool.connect().then(client => {
+        response.status(200).json({user: username});
+        /*
         client.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
             if (error){throw error;}
             if(results.rows > 0){
@@ -23,6 +25,7 @@ function checkUserExists(params, response) {
                 response.status(403).send("Credenciales no válidas")
             }
         })
+        */
     });
 }
 
