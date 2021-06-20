@@ -14,8 +14,8 @@ function checkUserExists(params, response) {
     //response.status(200).json({user: username});
     
     pool.connect().then(client => {
-        client.query('select * from users;').then(results => {
-            response.status(200).send(resutls);
+        client.query('select * from users').then(results => {
+            response.status(200).send(results);
         })
         //response.status(200).json({user: username});
         /*
