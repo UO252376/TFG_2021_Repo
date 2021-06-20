@@ -3,11 +3,11 @@ import React from 'react';
 export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {filament : this.props.filament != 1};
+        this.socket = this.props.socket;
     }
     
     componentDidMount() {
-        this.state = {filament : this.props.filament != 1};
-        this.socket = this.props.socket;
         this.socket.on('filamentStatus', (data) => { // Function that changes color depending on limit switch state
             console.log("Socket event: filamentStatus " + data);
             this.setState({
