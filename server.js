@@ -12,14 +12,7 @@ const db = require('./Postgres');
 const videoStream = require('raspberrypi-node-camera-web-streamer');
 
 
-// VIDEO STREAMING
-videoStream.acceptConnections(app, {
-    width: 1280,
-    height: 720,
-    fps: 16,
-    encoding: 'JPEG',
-    quality: 7
-}, '/stream.mjpg', true);
+
 
 
 //ROUTES
@@ -68,5 +61,14 @@ io.on('connection', (socket) => {
         setTimeout(() => relay.writeSync(0), 200);
     });
 });
+
+// VIDEO STREAMING
+videoStream.acceptConnections(app, {
+    width: 1280,
+    height: 720,
+    fps: 16,
+    encoding: 'JPEG',
+    quality: 7
+}, '/stream.mjpg', true);
 
 
