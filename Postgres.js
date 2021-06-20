@@ -1,7 +1,13 @@
 const bcrypt = require('bcrypt');
 
 const Pool = require('pg').Pool;
-const pool = new Pool();
+const pool = new Pool({
+    user: 'pi',
+    host: 'localhost',
+    database: 'tfg_2021',
+    password: '!TFG2021',
+    port: 5432,
+  });
 
 function checkUserExists(params, response) {
     const username = params.username;
