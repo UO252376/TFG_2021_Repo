@@ -20,8 +20,8 @@ function checkUserExists(params, response) {
         } else {
             response.status(403).send("Credenciales no válidas")
         }
-        */
     } );
+        */
 }
 
 function checkCorrectPassword(request, response, results) {
