@@ -26,7 +26,12 @@ app.post('/login', (req, res) => {
 
 
 app.post('/hash', (req, res) => {
-    db.hash(req, res);
+    const bcrypt = require('bcrypt');
+    const saltRounds = 12;
+    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+        if(err) { req.status(403).send("Error en el metodo hash")}
+        res.status(200).json({hashedPassword: hash});
+    });
 });
 
 //Main App Route
@@ -46,6 +51,7 @@ server.listen(port, () => {
 // Especificar peticiones personalizadas:
 
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+const { runInNewContext } = require('vm');
 var LED = new Gpio(4, 'high'); //use GPIO pin 4 as output
 var limitSwitch = new Gpio(17, 'in', 'both');
 var relay = new Gpio(18, 'low');

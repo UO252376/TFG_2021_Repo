@@ -8,15 +8,7 @@ const pool = new Pool({
                 password:'!TFG2021',
                 posr:5432
             });
-            
-function hash(request, response) {
-    const saltRounds = 12;
-    bcrypt.hash(request.body.password, saltRounds, (err, hash) => {
-        response.status(200).json({hashedPassword: hash});
-    });
 
-
-}
 function checkUserExists(request, response) {
     const username = request.body.username;
     this.pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
@@ -46,6 +38,5 @@ function checkCorrectPassword(request, response, results) {
 }
 
 module.exports = {
-    checkUserExists,
-    hash
+    checkUserExists
 }
