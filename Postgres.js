@@ -16,7 +16,7 @@ function checkUserExists(params, response) {
     this.pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
         if (error){throw error;}
         if(results.rows > 0){
-            response.status(200).json(results);
+            response.status(200).json({resp: results});
             checkCorrectPassword(request, response, results.rows);
         } else {
             response.status(403).send("Credenciales no válidas")
