@@ -30,7 +30,7 @@ app.post('/hash', (req, res) => {
     const saltRounds = 12;
     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
         if(err) { req.status(403).send("Error en el metodo hash")}
-        res.status(200).json({hashedPassword: hash});
+        res.status(200).send({hashedPassword: hash});
     });
 });
 
