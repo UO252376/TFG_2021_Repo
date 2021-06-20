@@ -22,8 +22,8 @@ app.use('/login', (req, res) => { // Request from the client
 */
 
 app.post('/login', (req, res) => {
-
-    res.status(200).json({m: "Se ve guay"});
+    console.log(req.body);
+    res.status(200).json({m: req.body});
     //db.checkUserExists(req, res);
 });
 
