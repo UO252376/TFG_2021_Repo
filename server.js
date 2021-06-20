@@ -21,7 +21,7 @@ app.use('/login', (req, res) => { // Request from the client
 });
 */
 
-app.post('/login', (req, res) => {
+app.use('/login', (req, res) => {
     db.checkUserExists(req.body, res);
 });
 
