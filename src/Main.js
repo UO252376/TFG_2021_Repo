@@ -6,11 +6,12 @@ import MessageLog from './components/MessageLog';
 import TempCanvas from './components/TempCanvas';
 import ControlPanel from './components/ControlPanel';
 import Login from './components/Login';
+import VideoStreaming from './components/VideoStreaming';
 
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { token: null, data: null};
+		this.state = { userToken: null, data: null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
 		this.logout = this.logout.bind(this);
@@ -28,24 +29,24 @@ export default class Main extends React.Component {
 
 	setToken(val){
 		if(val){
-			localStorage.setItem('token', JSON.stringify(val));
-			this.setState({token: val});
+			localStorage.setItem('userToken', JSON.stringify(val));
+			this.setState({userToken: val});
 		}
 	}
 
 	getToken() {
-		var tokenStr = localStorage.getItem('token');
+		var tokenStr = localStorage.getItem('userToken');
 		if(tokenStr) this.setToken(JSON.parse(tokenStr));
 	}
 
 	logout() {
-		this.setState({token: null});
-		localStorage.removeItem('token');
+		this.setState({userToken: null});
+		localStorage.removeItem('userToken');
 	}
 
 	render() {
 
-		if(!this.state.token){
+		if(!this.state.userToken){
 			return(
 				<div className="wrapper">
 					<header><h1>UO252376 - Controlador impresora</h1></header>
@@ -55,7 +56,7 @@ export default class Main extends React.Component {
 		}
 		return(
 			<div className="wrapper">
-				{!this.state.token ? 
+				{!this.state.userToken ? 
 					<div className="wrapper">
 						<header><h1>UO252376 - Controlador impresora</h1></header>
 						<Login setToken={this.setToken}></Login>
@@ -67,6 +68,7 @@ export default class Main extends React.Component {
 							<FilamentStatus socket={this.socket} data={this.state.data}/>
 							<ControlPanel socket={this.socket} />
 							<MessageLog socket={this.socket} />
+							<VideoStreaming />
 						</div>
 				}
 				

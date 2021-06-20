@@ -9,43 +9,44 @@ const path = require('path');
 const chalk = require('chalk');
 const morgan = require('morgan');
 const db = require('./Postgres');
-//Static Routes
+const Gpio = require('onoff').Gpio;
+const videoStream = require('raspberrypi-node-camera-web-streamer');
+
+// VIDEO STREAMING
+videoStream.acceptConnections(app, {
+    width: 1280,
+    height: 720,
+    fps: 16,
+    encoding: 'JPEG',
+    quality: 7
+}, '/stream.mjpg', true);
+
+
+//ROUTES
 app.use(express.json());
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
-app.use(morgan('dev')) // logging
+app.use(morgan('dev'));
 
-app.use('/login', (req, res) => {
+app.post('/login', (req, res) => {
     db.checkUserExists(req.body, res);
 });
 
-app.use('/hash', (req, res) => {
-    const bcrypt = require('bcrypt');
-    bcrypt.hash("!TFG2021", 10).then(resp => {
-        res.status(200).send(resp);
-    });
-});
-
-//Main App Route
+//MAIN PAGE
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
 
 
 
 const port = 1337;
 
-//Run Server
-//app.listen(process.env.PORT || port, () => console.log(chalk.blue(`Listening intently on port ${port}`)));
-
 server.listen(port, () => {
     console.log(chalk.blue(`Socket.io listening on port ${port}`))
 });
 
-// Especificar peticiones personalizadas:
+// SOCKETS
 
-var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-const { runInNewContext } = require('vm');
-var LED = new Gpio(4, 'high'); //use GPIO pin 4 as output
-var limitSwitch = new Gpio(17, 'in', 'both');
-var relay = new Gpio(18, 'low');
+var LED = new Gpio(4, 'high'); // FILAMENT SENSOR LIGHT
+var limitSwitch = new Gpio(17, 'in', 'both'); // FILAMENT SENSOR LIMIT SWITCH
+var relay = new Gpio(18, 'low'); // RELÉ PROGRAMABLE
 
 io.on('connection', (socket) => {
     console.log(chalk.green("User connected to socket"));
