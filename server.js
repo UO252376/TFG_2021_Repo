@@ -8,14 +8,27 @@ const io = new Server(server);
 const path = require('path');
 const chalk = require('chalk');
 const morgan = require('morgan');
+const db = require('./Postgres');
 //Static Routes
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(morgan('dev')) // logging
+/*
 app.use('/login', (req, res) => { // Request from the client
     res.send({
         token: 'test'
     });
 });
+*/
+
+app.post('/login', (req, res) => {
+    db.checkUserExists(req, res);
+});
+
+
+app.post('/hash', (req, res) => {
+    db.hash(req, res);
+});
+
 //Main App Route
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
 
