@@ -11,10 +11,10 @@ const pool = new Pool({
 
 function checkUserExists(params, response) {
     const username = params.username;
+    response.status(200).json(params);
+    /*
     this.pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
         if (error){throw error;}
-        response.status(200).json(results.rows);
-        /*
         if(results.rows > 0){
             checkCorrectPassword(request, response, results.rows);
         } else {
