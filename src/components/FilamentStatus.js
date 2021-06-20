@@ -1,4 +1,3 @@
-import { data } from 'jquery';
 import React from 'react';
 
 export default class FilamentStatus extends React.Component {
@@ -18,13 +17,12 @@ export default class FilamentStatus extends React.Component {
     }
 
     render() {
-        var isFilament = this.state.filament;
         return (
             <section className="filamentStatus">
                 <div>
                     <h3>Filament status: 
                     {
-                        isFilament ?
+                        this.state.filament ?
                         <span className="spanBox greenBox"></span>:
 
                         <span className="spanBox redBox"></span>
