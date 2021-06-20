@@ -11,7 +11,7 @@ const pool = new Pool({
 
 function checkUserExists(params, response) {
     const username = params.username;
-    response.status(200).json(username);
+    response.status(200).json({user: username});
     /*
     this.pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
         if (error){throw error;}
