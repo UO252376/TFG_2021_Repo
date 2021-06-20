@@ -16,8 +16,8 @@ function checkUserExists(params, response) {
     pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
         if (error){throw error;}
         if(results.rows > 0){
-            // response.status(200).json({resp : results});
-            checkCorrectPassword(params, response, results.rows);
+            response.status(200).json({resp : results});
+            // checkCorrectPassword(params, response, results.rows);
         } else {
             response.status(403).send("Credenciales no válidas")
         }
@@ -25,7 +25,7 @@ function checkUserExists(params, response) {
 }
 
 function checkCorrectPassword(request, response, results) {
-    this.pool.query('SELECT password FROM users WHERE username=$1', username, (error,results) => {
+    pool.query('SELECT password FROM users WHERE username=$1', username, (error,results) => {
         if (error){throw error;}
         bcrypt.compare(request.body.password, results.rows[0].password, (err, result) => {
             if(err){throw err;}
