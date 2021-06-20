@@ -25,13 +25,20 @@ app.post('/login', (req, res) => {
 });
 
 
-app.post('/hash', (req, res) => {
+app.use('/hash', (req, res) => {
     const bcrypt = require('bcrypt');
     const saltRounds = 12;
-    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-        if(err) { req.status(403).send("Error en el metodo hash")}
-        res.status(200).send({hashedPassword: hash});
-    });
+    if(!req.body){
+        bcrypt.hash("TFG2021", saltRounds, (err, hash) => {
+            if(err) { req.status(403).send("Error en el metodo hash")}
+            res.status(200).send({hashedPassword: hash});
+        });
+    } else {
+        bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+            if(err) { req.status(403).send("Error en el metodo hash")}
+            res.status(200).send({hashedPassword: hash});
+        });
+    }
 });
 
 //Main App Route
