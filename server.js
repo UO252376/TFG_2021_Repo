@@ -9,7 +9,6 @@ const path = require('path');
 const chalk = require('chalk');
 const morgan = require('morgan');
 const db = require('./Postgres');
-const Gpio = require('onoff').Gpio;
 const videoStream = require('raspberrypi-node-camera-web-streamer');
 
 
@@ -45,6 +44,7 @@ server.listen(port, () => {
 
 // SOCKETS
 
+const Gpio = require('onoff').Gpio;
 var LED = new Gpio(4, 'high'); // FILAMENT SENSOR LIGHT
 var limitSwitch = new Gpio(17, 'in', 'both'); // FILAMENT SENSOR LIMIT SWITCH
 var relay = new Gpio(18, 'low'); // RELÉ PROGRAMABLE
