@@ -1,9 +1,10 @@
+import { data } from 'jquery';
 import React from 'react';
 
 export default class FilamentStatus extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {filament : this.props.filament != 1};
+        this.state = {filament : props.data.filament != 1};
         this.socket = this.props.socket;
     }
     
@@ -17,12 +18,13 @@ export default class FilamentStatus extends React.Component {
     }
 
     render() {
+        var isFilament = this.state.filament;
         return (
             <section className="filamentStatus">
                 <div>
                     <h3>Filament status: 
                     {
-                        this.state.filament ?
+                        isFilament ?
                         <span className="spanBox greenBox"></span>:
 
                         <span className="spanBox redBox"></span>
