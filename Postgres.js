@@ -27,14 +27,13 @@ function checkUserExists(params, response) {
 
 function checkCorrectPassword(params, response) {
     pool.connect().then(client => {
-        client.query('SELECT password FROM users WHERE username= $1', [params.username]).then(results => {
+        client.query('SELECT password FROM users WHERE username = $1', [params.username]).then(results => {
             client.release();
-            bcrypt.compare(params.password, results.rows[0].password, (err, result)=> {
-                if(err){throw err;}
-                if (result == false) {
-                    response.status(403).send("Credenciales no válidas")
-                } else if (result == true) {
+            bcrypt.compare(params.password, results.rows[0].password).then(result => {
+                if (result) {
                     response.status(200).json({userToken: "sasdas"});
+                } else {
+                    response.status(403).send("Invalid credentials 2");
                 }
             });
 
