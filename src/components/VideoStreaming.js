@@ -6,7 +6,6 @@ export default class VideoStreaming extends React.Component {
     }
 
     render() {
-        var isFilament = this.state.filament;
         return (
             <section className="videoStreaming">
                 <div>
