@@ -10,45 +10,36 @@ const pool = new Pool({
   });
 
 function checkUserExists(params, response) {
-    const username = params.username;
-    //response.status(200).json({user: username});
-    
     pool.connect().then(client => {
-        client.query('SELECT username FROM users WHERE username = $1', [username]).then(results => {
+        client.query('SELECT username FROM users WHERE username = $1', [params.username]).then(results => {
             client.release();
-            response.status(200).send(results);
+            if(results.rows.length > 0){
+                checkCorrectPassword(params, response);
+            } else {
+                response.status(403).send("Credenciales no válidas")
+            }
         }).catch(err => {
             client.release();
             console.log(err.stack);
         });
-        //response.status(200).json({user: username});
-        /*
-        client.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
-            if (error){throw error;}
-            if(results.rows > 0){
-                response.status(200).json({resp : results});
-                // checkCorrectPassword(params, response, results.rows);
-            } else {
-                response.status(403).send("Credenciales no válidas")
-            }
-        })
-        */
     });
 }
 
-function checkCorrectPassword(request, response, results) {
-    pool.query('SELECT password FROM users WHERE username=$1', username, (error,results) => {
-        if (error){throw error;}
-        bcrypt.compare(request.body.password, results.rows[0].password, (err, result) => {
-            if(err){throw err;}
-            if (result == false) {
-                response.status(403).send("Credenciales no válidas")
-            }
-            if (result == true) {
-                response.status(200).json({userToken: "sasdas"});
-            }
+function checkCorrectPassword(params, response) {
+    pool.connect().then(client => {
+        client.query('SELECT password FROM users WHERE username= $1', [params.username]).then(results => {
+            client.release();
+            bcrypt.compare(params.password, results.rows[0].password, (err, result)=> {
+                if(err){throw err;}
+                if (result == false) {
+                    response.status(403).send("Credenciales no válidas")
+                } else if (result == true) {
+                    response.status(200).json({userToken: "sasdas"});
+                }
+            });
+
         });
-    } );
+    });
 }
 
 module.exports = {
