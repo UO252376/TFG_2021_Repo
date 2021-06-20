@@ -9,16 +9,18 @@ const pool = new Pool({
                 posr:5432
             });
 
-function checkUserExists(request, response) {
-    const username = request.body.username;
+function checkUserExists(params, response) {
+    const username = params.username;
     this.pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
         if (error){throw error;}
-        //response.status(200).json(results.rows);
+        response.status(200).json(results.rows);
+        /*
         if(results.rows > 0){
             checkCorrectPassword(request, response, results.rows);
         } else {
             response.status(403).send("Credenciales no válidas")
         }
+        */
     } );
 }
 

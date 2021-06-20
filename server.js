@@ -22,9 +22,7 @@ app.use('/login', (req, res) => { // Request from the client
 */
 
 app.post('/login', (req, res) => {
-    console.log(req.body);
-    res.status(200).json({m: req.body.password});
-    //db.checkUserExists(req, res);
+    db.checkUserExists(req.body, res);
 });
 
 //Main App Route
