@@ -10,6 +10,7 @@ const chalk = require('chalk');
 const morgan = require('morgan');
 const db = require('./Postgres');
 //Static Routes
+app.use(express.json());
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(morgan('dev')) // logging
 /*
@@ -22,23 +23,6 @@ app.use('/login', (req, res) => { // Request from the client
 
 app.post('/login', (req, res) => {
     db.checkUserExists(req, res);
-});
-
-
-app.use('/hash', (req, res) => {
-    const bcrypt = require('bcrypt');
-    const saltRounds = 12;
-    if(!req.body){
-        bcrypt.hash("TFG2021", saltRounds, (err, hash) => {
-            if(err) { req.status(403).send("Error en el metodo hash")}
-            res.status(200).send({hashedPassword: hash});
-        });
-    } else {
-        bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-            if(err) { req.status(403).send("Error en el metodo hash")}
-            res.status(200).send({hashedPassword: hash});
-        });
-    }
 });
 
 //Main App Route
