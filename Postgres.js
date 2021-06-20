@@ -1,25 +1,23 @@
 const bcrypt = require('bcrypt');
 
 const Pool = require('pg').Pool;
-const pool = new Pool({
-                user:'pi',
-                database:'tfg_2021',
-                password:'!TFG2021'
-            });
+const pool = new Pool();
 
 function checkUserExists(params, response) {
     const username = params.username;
     //response.status(200).json({user: username});
     
-    this.pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
-        if (error){throw error;}
-        if(results.rows > 0){
-            response.status(200).json({resp: results});
-            checkCorrectPassword(request, response, results.rows);
-        } else {
-            response.status(403).send("Credenciales no válidas")
-        }
-    } );
+    this.pool.connect().then(client => 
+        client.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
+            if (error){throw error;}
+            if(results.rows > 0){
+                response.status(200).json({resp: results});
+                // checkCorrectPassword(request, response, results.rows);
+            } else {
+                response.status(403).send("Credenciales no válidas")
+            }
+        })
+    );
 }
 
 function checkCorrectPassword(request, response, results) {
