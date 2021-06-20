@@ -22,7 +22,9 @@ app.use('/login', (req, res) => { // Request from the client
 */
 
 app.post('/login', (req, res) => {
-    db.checkUserExists(req, res);
+
+    res.status(200).send("Se ve guay");
+    //db.checkUserExists(req, res);
 });
 
 //Main App Route
