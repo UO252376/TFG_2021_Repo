@@ -14,9 +14,13 @@ function checkUserExists(params, response) {
     //response.status(200).json({user: username});
     
     pool.connect().then(client => {
-        client.query('select * from users').then(results => {
+        client.query('SELECT username FROM users WHERE username = $1', [username]).then(results => {
+            client.release();
             response.status(200).send(results);
-        })
+        }).catch(err => {
+            client.release();
+            console.log(err.stack);
+        });
         //response.status(200).json({user: username});
         /*
         client.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
