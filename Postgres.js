@@ -7,15 +7,17 @@ function checkUserExists(params, response) {
     const username = params.username;
     //response.status(200).json({user: username});
     
-    pool.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
-        if (error){throw error;}
-        if(results.rows > 0){
-            response.status(200).json({resp : results});
-            // checkCorrectPassword(params, response, results.rows);
-        } else {
-            response.status(403).send("Credenciales no válidas")
-        }
-    } );
+    pool.connect().then(client => {
+        client.query('SELECT username FROM users WHERE username=$1', username, (error,results) => {
+            if (error){throw error;}
+            if(results.rows > 0){
+                response.status(200).json({resp : results});
+                // checkCorrectPassword(params, response, results.rows);
+            } else {
+                response.status(403).send("Credenciales no válidas")
+            }
+        })
+    });
 }
 
 function checkCorrectPassword(request, response, results) {
