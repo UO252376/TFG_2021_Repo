@@ -23,7 +23,7 @@ app.use('/login', (req, res) => { // Request from the client
 
 app.post('/login', (req, res) => {
 
-    res.status(200).send("Se ve guay");
+    res.status(200).json({m: "Se ve guay"});
     //db.checkUserExists(req, res);
 });
 
