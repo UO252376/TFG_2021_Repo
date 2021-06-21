@@ -86,7 +86,7 @@ var proc;
 function startStreaming(io) {
  
     if (app.get('watchingFile')) {
-      io.sockets.emit('liveStream', 'image_stream.jpg?_t=' + (Math.random() * 100000));
+      io.sockets.emit('liveStream', 'image_stream.jpg');
       return;
     }
    
@@ -98,7 +98,7 @@ function startStreaming(io) {
     app.set('watchingFile', true);
    
     fs.watchFile(path.join(__dirname, '/stream/image_stream.jpg'), {bigInt: false, persistent: true, interval: 60}, function(current, previous) {
-      io.sockets.emit('liveStream', 'image_stream.jpg?_t='  + (Math.random() * 100000));
+      io.sockets.emit('liveStream', 'image_stream.jpg');
     });
 }
 

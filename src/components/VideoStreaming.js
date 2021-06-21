@@ -10,8 +10,6 @@ export default class VideoStreaming extends React.Component {
         var image = this.imgRef.current;
         this.props.socket.on('liveStream', (data) => {
             image.src = data;
-            console.log("camera");
-            console.log(data);
         })
         this.props.socket.emit('startStreaming');
     }
@@ -20,7 +18,7 @@ export default class VideoStreaming extends React.Component {
         return (
             <section className="videoStreaming">
                 <div>
-                    <img ref={this.imgRef} alt="Camera streaming" className="streamImg" src=""/>
+                    <img ref={this.imgRef} alt="Camera streaming" className="streamImg" src="http://192.168.1.21/image_stream.jpg"/>
                 </div>
             </section>
         );
