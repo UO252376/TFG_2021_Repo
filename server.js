@@ -61,9 +61,9 @@ io.on('connection', (socket) => {
 });
 
 // VIDEO STREAMING
-/*
+
 const videoApp = express();
-videoStream.acceptConnections(videoApp, {
+/*videoStream.acceptConnections(videoApp, {
     width: 1280,
     height: 720,
     fps: 16,
