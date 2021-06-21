@@ -14,6 +14,7 @@ export default class Main extends React.Component {
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
 		this.logout = this.logout.bind(this);
+		this.initSockets = this.initSockets.bind(this);
 	}
 
 	componentDidMount() {
@@ -24,6 +25,7 @@ export default class Main extends React.Component {
 		if(val){
 			localStorage.setItem('userToken', JSON.stringify(val));
 			this.setState({userToken: val});
+			this.initSockets();
 		}
 	}
 
