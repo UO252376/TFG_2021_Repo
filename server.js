@@ -65,10 +65,8 @@ io.use((socket, next) => {
     // SETUP
     sockets[socket.id] = socket;
     console.log(chalk.green("User connected to socket"));
-    socket.on('initDataRequest', () => {
-        socket.emit('initialSetup', {
-            filament: ''+limitSwitch.readSync()
-        });
+    socket.emit('initialSetup', {
+        filament: ''+limitSwitch.readSync()
     });
 
     // SHUTDOWN

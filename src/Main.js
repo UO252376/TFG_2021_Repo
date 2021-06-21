@@ -55,6 +55,10 @@ export default class Main extends React.Component {
 		this.socket.disconnect();
 	}
 
+	componentWillUnmount() {
+		this.socket.disconnect();
+	}
+
 	render() {
 
 		if(!this.state.userToken){
