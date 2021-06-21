@@ -62,7 +62,6 @@ io.on('connection', (socket) => {
 
 // VIDEO STREAMING
 const videoApp = express();
-videoApp.listen(1338, () => console.log('listening on port ${port}!'));
 
 videoStream.acceptConnections(videoApp, {
     width: 1280,
@@ -72,4 +71,4 @@ videoStream.acceptConnections(videoApp, {
     quality: 7
 }, '/stream.mjpg', true);
 
-
+videoApp.listen(1338, () => console.log('listening on port ${port}!'));
