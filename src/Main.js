@@ -67,7 +67,7 @@ export default class Main extends React.Component {
 							<FilamentStatus socket={this.socket} data={this.state.data}/>
 							<ControlPanel socket={this.socket} />
 							<MessageLog socket={this.socket} />
-							<VideoStreaming />
+							<VideoStreaming socket={this.socket} />
 						</div>
 				}
 				
