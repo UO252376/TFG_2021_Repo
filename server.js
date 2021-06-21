@@ -25,6 +25,7 @@ app.post('/login', (req, res) => {
 
 //MAIN PAGE
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/image_stream.jpg', (req, res) => res.sendFile(path.join(__dirname, '/stream/image_stream.jpg')));
 
 server.listen(port, () => {
     console.log(chalk.blue(`Socket.io listening on port ${port}`))
@@ -89,7 +90,7 @@ function startStreaming(io) {
       return;
     }
    
-    var args = ["-w", "640", "-h", "480", "-o", "./dist/image_stream.jpg", "-t", "999999999", "-tl", "500"];
+    var args = ["-w", "640", "-h", "480", "-o", "./stream/image_stream.jpg", "-t", "999999999", "-tl", "500"];
     proc = spawn('raspistill', args);
    
     console.log('Watching for changes...');
@@ -104,5 +105,5 @@ function startStreaming(io) {
 function stopStreaming() {
     app.set('watchingFile', false);
     if (proc) proc.kill();
-    fs.unwatchFile('./dist/image_stream.jpg');
+    fs.unwatchFile('./stream/image_stream.jpg');
 }
