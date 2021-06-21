@@ -17,25 +17,27 @@ export default class Main extends React.Component {
 	}
 
 	componentDidMount() {
-		this.socket = io();
 		this.getToken();
-		this.socket.on("initialSetup", (data) => {
-			console.log("initialSetup")
-			this.setState({data: data});
-			console.log(data);
-		});
 	}
 
 	setToken(val){
 		if(val){
 			localStorage.setItem('userToken', JSON.stringify(val));
 			this.setState({userToken: val});
+			this.socket = io();
+			this.socket.on("initialSetup", (data) => {
+				console.log("initialSetup")
+				this.setState({data: data});
+				console.log(data);
+			});
 		}
 	}
 
 	getToken() {
 		var tokenStr = localStorage.getItem('userToken');
-		if(tokenStr) this.setToken(JSON.parse(tokenStr));
+		if(tokenStr) {
+			this.setToken(JSON.parse(tokenStr));
+		}
 	}
 
 	logout() {
