@@ -24,13 +24,20 @@ export default class Main extends React.Component {
 		if(val){
 			localStorage.setItem('userToken', JSON.stringify(val));
 			this.setState({userToken: val});
-			this.socket = io();
-			this.socket.on("initialSetup", (data) => {
-				console.log("initialSetup")
-				this.setState({data: data});
-				console.log(data);
-			});
 		}
+	}
+
+	initSockets() {
+		this.socket = io({
+			query: {
+				token: this.state.userToken
+			}
+		});
+		this.socket.on("initialSetup", (data) => {
+			console.log("initialSetup")
+			this.setState({data: data});
+			console.log(data);
+		});
 	}
 
 	getToken() {

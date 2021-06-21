@@ -54,7 +54,14 @@ limitSwitch.watch((err,value) => {
 //SOCKETS
 var sockets = {};
 
-io.on('connection', (socket) => {
+io.use((socket, next) => {
+    if(socket.handshake.query && socket.handshake.query.token) {
+        bcrypt.compare(securityPhrase, socket.handshake.query.token).then(result => {
+            if(result) next();
+            else next(new Error('Authentication error'));
+        });
+    } else  next(new Error('Authentication error'));
+}).on('connection', (socket) => {
     // SETUP
     sockets[socket.id] = socket;
     console.log(chalk.green("User connected to socket"));
