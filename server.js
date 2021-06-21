@@ -58,10 +58,3 @@ io.on('connection', (socket) => {
         setTimeout(() => relay.writeSync(0), 200);
     });
 });
-
-// VIDEO STREAMING
-const videoApp = express();
-const videoStream = require('raspberrypi-node-camera-web-streamer');
-videoStream.acceptConnections(videoApp);
-
-videoApp.listen(1338, () => console.log('listening on port ${port}!'));
