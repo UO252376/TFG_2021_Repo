@@ -31,7 +31,7 @@ export default class Main extends React.Component {
 
 	initSockets() {
 		this.socket = io({
-			query: {
+			auth: {
 				token: this.state.userToken
 			}
 		});
