@@ -35,13 +35,13 @@ export default class Main extends React.Component {
 				token: this.state.userToken
 			}
 		});
-		this.socket.on('connect', () => {
-			this.socket.on("initialSetup", (data) => {
+		this.socket.on('connect', (s) => {
+			s.on("initialSetup", (data) => {
 				console.log("initialSetup")
 				this.setState({data: data});
 				console.log(data);
 			});
-			this.socket.emit('initDataRequest');
+			s.emit('initDataRequest');
 		});
 	}
 
