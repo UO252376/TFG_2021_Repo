@@ -1,10 +1,7 @@
 //Requires
 const express = require('express');
-const app = express();
 const http = require('http');
-const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
 const path = require('path');
 const chalk = require('chalk');
 const morgan = require('morgan');
@@ -12,8 +9,9 @@ const db = require('./Postgres');
 const videoStream = require('raspberrypi-node-camera-web-streamer');
 
 
-
-
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
 //ROUTES
 app.use(express.json());
@@ -63,12 +61,14 @@ io.on('connection', (socket) => {
 });
 
 // VIDEO STREAMING
-videoStream.acceptConnections(app, {
+const videoApp = express();
+videoStream.acceptConnections(videoApp, {
     width: 1280,
     height: 720,
     fps: 16,
     encoding: 'JPEG',
     quality: 7
 }, '/stream.mjpg', true);
+videoApp.listen(7459, () => console.log('listening on port ${port}!'));
 
 
