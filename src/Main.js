@@ -31,18 +31,19 @@ export default class Main extends React.Component {
 
 	initSockets() {
 		this.socket = io({
-			auth: {
+			query: {
 				token: this.state.userToken
 			}
 		});
-		this.socket.on('connect', (s) => {
-			s.on("initialSetup", (data) => {
-				console.log("initialSetup")
-				this.setState({data: data});
-				console.log(data);
-			});
-			s.emit('initDataRequest');
+		this.socket.on("connect", () => {	
+			this.socket.emit('initDataRequest');
 		});
+		this.socket.on("initialSetup", (data) => {
+			console.log("initialSetup")
+			this.setState({data: data});
+			console.log(data);
+		});
+
 	}
 
 	getToken() {
