@@ -63,13 +63,13 @@ io.on('connection', (socket) => {
 // VIDEO STREAMING
 
 const videoApp = express();
-/*videoStream.acceptConnections(videoApp, {
+videoStream.acceptConnections(videoApp, {
     width: 1280,
     height: 720,
     fps: 16,
     encoding: 'JPEG',
     quality: 7
 }, '/stream.mjpg', true);
-videoApp.listen(1338, () => console.log('listening on port ${port}!'));
+/*videoApp.listen(1338, () => console.log('listening on port ${port}!'));
 */
 
