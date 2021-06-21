@@ -71,7 +71,7 @@ export default class Main extends React.Component {
 						<header><h1>UO252376 - Controlador impresora</h1></header>
 						<Login setToken={this.setToken}></Login>
 					</div>
-					: this.state.data &&
+					: this.state.data ?
 						<div>
 							<header><h1>UO252376 - Controlador impresora</h1><div><button onClick={this.logout}>Salir</button></div></header>
 							<TempCanvas socket={this.socket}/>
@@ -79,7 +79,9 @@ export default class Main extends React.Component {
 							<ControlPanel socket={this.socket} />
 							<MessageLog socket={this.socket} />
 							<VideoStreaming socket={this.socket} />
-						</div>
+						</div> 
+						: <div><header><h1>No hagas trampas</h1></header></div>
+
 				}
 				
 			</div>
