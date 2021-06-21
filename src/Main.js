@@ -30,15 +30,17 @@ export default class Main extends React.Component {
 	}
 
 	initSockets() {
-		this.socket = io({
+		const socket = io({
 			query: {
 				token: this.state.userToken
 			}
 		});
-		this.socket.on("connect", () => {	
-			this.socket.emit('initDataRequest');
+		socket.on("connect", () => {	
+			socket.emit('initDataRequest');
+			console.log('on connect');
+			this.socket = socket;
 		});
-		this.socket.on("initialSetup", (data) => {
+		socket.on("initialSetup", (data) => {
 			console.log("initialSetup")
 			this.setState({data: data});
 			console.log(data);
