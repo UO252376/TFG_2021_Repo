@@ -90,14 +90,14 @@ function startStreaming(io) {
       return;
     }
    
-    var args = ["-w", "640", "-h", "480", "-o", path.join(__dirname, '/stream/image_stream.jpg'), "-t", "999999999", "-tl", "60"];
+    var args = ["-w", "640", "-h", "480", "-o", path.join(__dirname, '/stream/image_stream.jpg'), "-t", "999999999", "-tl", "40"];
     proc = spawn('raspistill', args);
    
     console.log('Watching for changes...');
    
     app.set('watchingFile', true);
    
-    fs.watchFile(path.join(__dirname, '/stream/image_stream.jpg'), {bigInt: false, persistent: true, interval: 60}, function(current, previous) {
+    fs.watchFile(path.join(__dirname, '/stream/image_stream.jpg'), {bigInt: false, persistent: true, interval: 40}, function(current, previous) {
       io.sockets.emit('liveStream', 'image_stream.jpg');
     });
 }
