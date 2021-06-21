@@ -52,6 +52,11 @@ export default class Main extends React.Component {
 	logout() {
 		this.setState({userToken: null});
 		localStorage.removeItem('userToken');
+		this.socket.disconnect();
+	}
+
+	componentWillUnmount() {
+		this.socket.disconnect();
 	}
 
 	render() {
