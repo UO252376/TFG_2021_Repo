@@ -14,13 +14,16 @@ const server = http.createServer(app);
 const io = new Server(server);
 const port = 1337;
 
+const securityPhrase = "compruebaUsuarioSeguroYa";
+const bcrypt = require('bcrypt');
+
 //ROUTES
 app.use(express.json());
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(morgan('dev'));
 
 app.post('/login', (req, res) => {
-    db.checkUserExists(req.body, res);
+    db.checkUserExists(req.body, res, securityPhrase);
 });
 
 //MAIN PAGE
