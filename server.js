@@ -55,7 +55,7 @@ limitSwitch.watch((err,value) => {
 var sockets = {};
 
 io.use((socket, next) => {
-    if(socket.handshake.query && socket.handshake.query.token) {
+    if(socket.handshake.auth && socket.handshake.auth.token) {
         bcrypt.compare(securityPhrase, socket.handshake.query.token).then(result => {
             if(result) next();
             else next(new Error('Authentication error'));
@@ -65,8 +65,10 @@ io.use((socket, next) => {
     // SETUP
     sockets[socket.id] = socket;
     console.log(chalk.green("User connected to socket"));
-    socket.emit('initialSetup', {
-        filament: ''+limitSwitch.readSync()
+    socket.on('initDataRequest', () => {
+        socket.emit('initialSetup', {
+            filament: ''+limitSwitch.readSync()
+        });
     });
 
     // SHUTDOWN
