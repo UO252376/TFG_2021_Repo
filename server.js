@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
 
     // STREAMING
     socket.on('startStreaming', () => {
-        startStreaming();
+        startStreaming(io);
     });
 
     socket.on('disconnect', () => {
@@ -82,14 +82,14 @@ var fs = require('fs');
 var spawn = require('child_process').spawn;
 var proc;
 
-function startStreaming() {
+function startStreaming(io) {
  
     if (app.get('watchingFile')) {
       io.sockets.emit('liveStream', 'image_stream.jpg?_t=' + (Math.random() * 100000));
       return;
     }
    
-    var args = ["-w", "640", "-h", "480", "-o", "./stream/image_stream.jpg", "-t", "999999999", "-tl", "50"];
+    var args = ["-w", "640", "-h", "480", "-o", "./image_stream.jpg", "-t", "999999999", "-tl", "50"];
     proc = spawn('raspistill', args);
    
     console.log('Watching for changes...');
@@ -97,7 +97,7 @@ function startStreaming() {
     app.set('watchingFile', true);
    
     fs.watchFile('./stream/image_stream.jpg', function(current, previous) {
-      io.sockets.emit('liveStream', 'image_stream.jpg?_t=' + (Math.random() * 100000));
+      io.sockets.emit('liveStream', 'image_stream.jpg?_t=' + current);
     });
 }
 
