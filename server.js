@@ -55,7 +55,7 @@ limitSwitch.watch((err,value) => {
 var sockets = {};
 
 io.use((socket, next) => {
-    if(socket.handshake.auth && socket.handshake.auth.token) {
+    if(socket.handshake.query && socket.handshake.query.token) {
         bcrypt.compare(securityPhrase, socket.handshake.query.token).then(result => {
             if(result) next();
             else next(new Error('Authentication error'));
