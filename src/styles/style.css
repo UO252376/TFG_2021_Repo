@@ -153,3 +153,11 @@ canvas {
     align-items: center;
     background-color: rgb(240, 233, 226);
 }
+
+.streamImg {
+    height: 480px;
+    width: 640px;
+    margin: 0px auto;
+    display: block;
+    margin-top: 20px;
+}

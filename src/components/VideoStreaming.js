@@ -20,7 +20,7 @@ export default class VideoStreaming extends React.Component {
         return (
             <section className="videoStreaming">
                 <div>
-                    <img ref={this.imgRef} src="" alt="Camera streaming"/>
+                    <img ref={this.imgRef} alt="Camera streaming" className="streamImg" src=""/>
                 </div>
             </section>
         );
