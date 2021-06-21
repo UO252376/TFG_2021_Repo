@@ -69,6 +69,6 @@ videoStream.acceptConnections(videoApp, {
     encoding: 'JPEG',
     quality: 7
 }, '/stream.mjpg', true);
-videoApp.listen(7459, () => console.log('listening on port ${port}!'));
+videoApp.listen(1338, () => console.log('listening on port ${port}!'));
 
 
