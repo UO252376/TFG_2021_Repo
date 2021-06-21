@@ -10,6 +10,8 @@ export default class VideoStreaming extends React.Component {
         var image = this.imgRef.current;
         this.props.socket.on('liveStream', (data) => {
             image.src = data;
+            console.log("camera");
+            console.log(data);
         })
         this.props.socket.emit('startStreaming');
     }
