@@ -32,8 +32,8 @@ export default class Main extends React.Component {
 	initSockets() {
 		if(!this.socket){
 			console.log('no socket')
+			console.log(this.state.userToken);
 			this.socket = io({
-				forceNew: true,
 				query: {
 					token: this.state.userToken
 				}
