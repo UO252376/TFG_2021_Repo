@@ -10,7 +10,7 @@ import VideoStreaming from './components/VideoStreaming';
 export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { userToken: null, data: null};
+		this.state = { userToken: null, data: null, socket: null};
 		this.setToken = this.setToken.bind(this);
 		this.getToken = this.getToken.bind(this);
 		this.logout = this.logout.bind(this);
@@ -24,23 +24,17 @@ export default class Main extends React.Component {
 	setToken(val){
 		if(val){
 			localStorage.setItem('userToken', JSON.stringify(val));
-			this.setState({userToken: val});
-			this.initSockets();
+			this.setState({
+				userToken: val, 
+				socket: io({ query: { token: val } })
+			});
 		}
+		this.initSockets();
 	}
 
 	initSockets() {
-		const socket = io('192.168.1.21',{
-			query: {
-				token: this.state.userToken
-			}
-		});
-		socket.on("connect", () => {	
-			socket.emit('initDataRequest');
-			console.log('on connect');
-			this.socket = socket;
-		});
-		socket.on("initialSetup", (data) => {
+		this.state.socket.emit('initDataRequest');
+		this.state.socket.on("initialSetup", (data) => {
 			console.log("initialSetup")
 			this.setState({data: data});
 			console.log(data);
@@ -52,6 +46,7 @@ export default class Main extends React.Component {
 		var tokenStr = localStorage.getItem('userToken');
 		if(tokenStr) {
 			this.setToken(JSON.parse(tokenStr));
+			this.initSockets(JSON.parse(tokenStr));
 		}
 	}
 
@@ -82,14 +77,14 @@ export default class Main extends React.Component {
 						<header><h1>UO252376 - Controlador impresora</h1></header>
 						<Login setToken={this.setToken}></Login>
 					</div>
-					: this.state.data &&
+					: this.state.socket && this.state.data &&
 						<div>
 							<header><h1>UO252376 - Controlador impresora</h1><div><button onClick={this.logout}>Salir</button></div></header>
-							<TempCanvas socket={this.socket}/>
-							<FilamentStatus socket={this.socket} data={this.state.data}/>
-							<ControlPanel socket={this.socket} />
-							<MessageLog socket={this.socket} />
-							<VideoStreaming socket={this.socket} />
+							<TempCanvas socket={this.state.socket}/>
+							<FilamentStatus socket={this.state.socket} data={this.state.data}/>
+							<ControlPanel socket={this.state.socket} />
+							<MessageLog socket={this.state.socket} />
+							<VideoStreaming socket={this.state.socket} />
 						</div>
 				}
 				
