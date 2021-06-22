@@ -127,7 +127,6 @@ const SerialPort = require('serialport');
 const ReadLine = require('@serialport/parser-readline');
 const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 2500000, autoOpen: true}, (err) => {
     io.sockets.emit('printerFeed', err);
-    setTimeout(createSerialPort(), 1000);
 });
     
 const lineStream = serialPort.pipe(new ReadLine());
