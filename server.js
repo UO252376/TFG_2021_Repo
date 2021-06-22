@@ -69,7 +69,9 @@ io.use((socket, next) => {
         socket.emit('initialSetup', {
             filament: ''+limitSwitch.readSync()
         });
-    })
+    });
+    
+    io.sockets.emit('printerFeed', serialPort);
 
     // SHUTDOWN
     socket.on('shutdown', () => {
@@ -128,7 +130,6 @@ const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 2500000, autoOpen: 
     io.sockets.emit('printerFeed', err);
     setTimeout(createSerialPort(), 1000);
 });
-io.sockets.emit('printerFeed', serialPort);
     
 const lineStream = serialPort.pipe(new ReadLine());
 
