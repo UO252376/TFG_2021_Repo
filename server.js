@@ -133,7 +133,7 @@ serialPort.on('open', () => {
     lineStream.on('data', (data) => {
         io.sockets.emit('printerFeed', data);
     });
-    setTimeout(() => serialPort.write('M155 S3\n'), 8000);
+    setInterval(() => serialPort.write('M155 S3\n'), 8000);
 });
 
 
