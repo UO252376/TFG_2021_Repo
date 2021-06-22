@@ -125,15 +125,13 @@ function stopStreaming() {
 // PRINTER SERIAL CONNECTION
 const SerialPort = require('serialport');
 const ReadLine = require('@serialport/parser-readline');
-const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 2500000, autoOpen: true}, (err) => {
-    io.sockets.emit('printerFeed', err);
-});
-console.log(serialPort);
+const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 2500000, autoOpen: true});
     
 const lineStream = serialPort.pipe(new ReadLine());
 
 serialPort.on('data', (data) =>{ 
     io.sockets.emit('printerFeed', data);
+    console.log(data);
 });
 
-setInterval(() => serialPort.write('M115 S1\n'), 1000);
+setInterval(() => serialPort.write('M115 S1'), 1000);
