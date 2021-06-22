@@ -120,7 +120,7 @@ function stopStreaming() {
     fs.unwatchFile(path.join(__dirname, '/stream/image_stream.jpg'));
 }
 
-
+/*
 // PRINTER SERIAL CONNECTION
 const SerialPort = require('serialport');
 const ReadLine = SerialPort.parsers.Readline;
