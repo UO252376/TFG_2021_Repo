@@ -135,7 +135,7 @@ serialPort.on('connect', () => {
         console.log("lineStream on data (in on connect)")
         console.log(data);
     });
-    //serialPort.write('M155 S3\n');
+    serialPort.write('M155 S3\n');
 })
 
 
@@ -144,5 +144,4 @@ lineStream.on('data', (data) => {
     console.log("lineStream on data (outside on connect)")
     console.log(data);
 })
-setTimeout(() => serialPort.write('M155 S3\n'), 5000);
 
