@@ -124,7 +124,7 @@ function stopStreaming() {
 // PRINTER SERIAL CONNECTION
 const SerialPort = require('serialport');
 const ReadLine = require('@serialport/parser-readline');
-const port = new SerialPort('dev/ttyUSB0', {baudRate: 2500000, autoOpen: true});
+const port = new SerialPort('dev/ttyUSB0');
 //const lineStream = port.pipe(new ReadLine());
 /*
 port.on('open', () => {
