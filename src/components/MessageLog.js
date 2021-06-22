@@ -1,5 +1,4 @@
 import React from 'react';
-import io from 'socket.io-client';
 
 export default class MessageLog extends React.Component {
     constructor(props) {
@@ -7,6 +6,7 @@ export default class MessageLog extends React.Component {
         this.state = {log: ""};
         this.socket = this.props.socket;
         var nl = '\r\n';
+        this.MAX_LINES = 50;
         this.textlines = [];
     }
 
@@ -15,7 +15,7 @@ export default class MessageLog extends React.Component {
             console.log('printerFeed')
             console.log(data);
             this.textlines.push(data);
-            if(this.textlines.length >= MAX_LINES){
+            if(this.textlines.length >= this.MAX_LINES){
                 this.textlines.shift();
             }
             this.setState({log: this.textlines.join(nl)});
