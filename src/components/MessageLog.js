@@ -5,7 +5,7 @@ export default class MessageLog extends React.Component {
         super(props);
         this.state = {log: ""};
         this.socket = this.props.socket;
-        var nl = '\r\n';
+        this.nl = '\r\n';
         this.MAX_LINES = 50;
         this.textlines = [];
     }
@@ -18,7 +18,7 @@ export default class MessageLog extends React.Component {
             if(this.textlines.length >= this.MAX_LINES){
                 this.textlines.shift();
             }
-            this.setState({log: this.textlines.join(nl)});
+            this.setState({log: this.textlines.join(this.nl)});
         });
     }
 
