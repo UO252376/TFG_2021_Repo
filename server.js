@@ -128,17 +128,17 @@ const ReadLine = require('@serialport/parser-readline');
 const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 115200, autoOpen: true});
     
 const lineStream = serialPort.pipe(new ReadLine());
-const REQUEST_TEMP_ID;
+var REQUEST_TEMP_ID;
 
 serialPort.on('open', () => { 
     lineStream.on('data', (data) => {
         io.sockets.emit('printerFeed', data);
     });
     REQUEST_TEMP_ID = setInterval(() => serialPort.write('M105\n'), 8000);
+});
 
-    serialPort.on('close', () => {
-        clearInterval(REQUEST_TEMP_ID);
-    });
+serialPort.on('close', () => {
+    clearInterval(REQUEST_TEMP_ID);
 });
 
 
