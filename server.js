@@ -128,13 +128,12 @@ const ReadLine = require('@serialport/parser-readline');
 const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 2500000, autoOpen: true}, (err) => {
     io.sockets.emit('printerFeed', err);
 });
+console.log(serialPort);
     
 const lineStream = serialPort.pipe(new ReadLine());
 
-serialPort.on('connect', () => {
-    serialPort.on('data', (data) =>{ 
-        io.sockets.emit('printerFeed', data);
-    });
+serialPort.on('data', (data) =>{ 
+    io.sockets.emit('printerFeed', data);
 });
 
 setInterval(() => serialPort.write('M115 S1\n'), 1000);
