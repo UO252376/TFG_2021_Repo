@@ -132,5 +132,5 @@ serialPort.on('open', () => {
         io.sockets.emit('printerFeed', data);
     });
 
-    port.write('M155 S1');
+    serialPort.write('M155 S1');
 });
