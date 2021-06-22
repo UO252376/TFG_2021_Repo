@@ -8,7 +8,12 @@ export default class MessageLog extends React.Component {
         this.socket = this.props.socket;
         var nl = '\r\n';
         this.textlines = [];
+    }
+
+    componentDidMount() {
         this.socket.on('printerFeed', (data) => {
+            console.log('printerFeed')
+            console.log(data);
             this.textlines.push(data);
             if(this.textlines.length >= MAX_LINES){
                 this.textlines.shift();

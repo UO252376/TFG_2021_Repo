@@ -31,8 +31,6 @@ export default class Main extends React.Component {
 
 	initSockets(val) {
 		if(!this.socket){
-			console.log('no socket')
-			console.log(val);
 			this.socket = io({
 				query: {
 					token: val
@@ -63,6 +61,7 @@ export default class Main extends React.Component {
 
 	componentWillUnmount() {
 		this.socket.disconnect();
+		this.socket = null;
 	}
 
 	render() {

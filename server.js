@@ -119,3 +119,18 @@ function stopStreaming() {
     if (proc) proc.kill();
     fs.unwatchFile(path.join(__dirname, '/stream/image_stream.jpg'));
 }
+
+
+// PRINTER SERIAL CONNECTION
+const SerialPort = require('serialport');
+const ReadLine = SerialPort.parsers.Readline;
+const port = new SerialPort('dev/ttyUSB0', {baudRate: 2500000, autoOpen: true});
+const lineStream = port.pipe(new ReadLine());
+
+port.on('open', () => {
+    lineStream.on('data', (data) =>{ 
+        io.sockets.emit('printerFeed', data);
+    });
+
+    port.write('M155 S1');
+});
