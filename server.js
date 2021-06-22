@@ -133,7 +133,7 @@ var REQUEST_TEMP_ID;
 
 serialPort.on('open', () => { 
     lineStream.on('data', (data) => {
-        io.sockets.emit('printerFeed', data);
+        if((data+"").indexOf("ok T") >= 0) {io.sockets.emit('printerFeed', data);}
         if((data+"").indexOf('Error') >= 0) { serialPort.close();}
     });
     REQUEST_TEMP_ID = setInterval(() => serialPort.write('M105\n'), 8000);
