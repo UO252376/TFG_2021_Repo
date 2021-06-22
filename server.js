@@ -135,11 +135,13 @@ serialPort.on('open', () => {
         io.sockets.emit('printerFeed', data);
     });
     REQUEST_TEMP_ID = setInterval(() => serialPort.write('M105\n'), 8000);
+
+    serialPort.on('close', () => {
+        clearInterval(REQUEST_TEMP_ID);
+    });
 });
 
-serialPort.on('close', () => {
-    clearInterval(REQUEST_TEMP_ID);
-})
+
 
 
 
