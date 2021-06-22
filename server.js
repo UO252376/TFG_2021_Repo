@@ -129,12 +129,6 @@ const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 115200, autoOpen: t
     
 const lineStream = serialPort.pipe(new ReadLine());
 
-serialPort.on('data', (data) =>{ 
-    io.sockets.emit('printerFeed', data);
-    console.log("serial port on data")
-    console.log(data);
-});
-
 serialPort.on('connect', () => {
     lineStream.on('data', (data) => {
         io.sockets.emit('printerFeed', data);
@@ -149,5 +143,5 @@ lineStream.on('data', (data) => {
     console.log("lineStream on data (outside on connect)")
     console.log(data);
 })
+serialPort.write('M115 S1\n');
 
-setInterval(() => serialPort.write('M115 S1'), 1000);
