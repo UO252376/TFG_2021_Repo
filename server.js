@@ -143,5 +143,5 @@ lineStream.on('data', (data) => {
     console.log("lineStream on data (outside on connect)")
     console.log(data);
 })
-setInterval(serialPort.write('M105\n'), 1500);
+setInterval(() => serialPort.write('M105\n'), 1500);
 
