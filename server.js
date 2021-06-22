@@ -128,7 +128,7 @@ const serialPort = new SerialPort('/dev/ttyUSB0', {baudRate: 2500000, autoOpen: 
 const lineStream = serialPort.pipe(new ReadLine());
 
 serialPort.on('open', () => {
-    lineStream.on('data', (data) =>{ 
+    serialPort.on('data', (data) =>{ 
         io.sockets.emit('printerFeed', data);
     });
 
