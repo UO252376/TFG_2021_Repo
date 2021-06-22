@@ -71,7 +71,6 @@ io.use((socket, next) => {
         });
     });
     
-    io.sockets.emit('printerFeed', serialPort);
 
     // SHUTDOWN
     socket.on('shutdown', () => {
