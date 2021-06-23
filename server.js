@@ -98,7 +98,7 @@ io.use((socket, next) => {
         serialPort.write('M24\n');
     })
     socket.on('cancelPrint', () => {
-        serialPort.write('M524\n');
+        serialPort.write('M81\n');
     })
 });
 
@@ -114,14 +114,14 @@ function startStreaming(io) {
       return;
     }
    
-    var args = ["-w", "320", "-h", "240", "-o", path.join(__dirname, '/stream/image_stream.jpg'), "-t", "999999999", "-tl", "100"];
+    var args = ["-w", "320", "-h", "240", "-o", path.join(__dirname, '/stream/image_stream.jpg'), "-t", "999999999", "-tl", "1000"];
     proc = spawn('raspistill', args);
    
     console.log('Watching for changes...');
    
     app.set('watchingFile', true);
    
-    fs.watchFile(path.join(__dirname, '/stream/image_stream.jpg'), {bigInt: false, persistent: true, interval: 100}, function(current, previous) {
+    fs.watchFile(path.join(__dirname, '/stream/image_stream.jpg'), {bigInt: false, persistent: true, interval: 1000}, function(current, previous) {
       io.sockets.emit('liveStream', 'image_stream.jpg');
     });
 }
