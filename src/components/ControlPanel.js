@@ -4,20 +4,36 @@ const MAX_LINES = 100;
 export default class ControlPanel extends React.Component {
     constructor(props) {
         super(props);
-        this.socket = this.props.socket;
-        this.shutDown = this.shutDown.bind(this)
+        this.pause = this.pause.bind(this);
+
+        this.shutDown = this.shutDown.bind(this);
+    }
+
+    componentDidMount() {
+    }
+
+    pause() {
+        this.props.socket.emit('pausePrint');
+    }
+
+    resume() {
+        this.props.socket.emit('resumePrint');
+    }
+
+    cancel(){
+        this.props.socket.emit('cancelPrint');
     }
 
     shutDown() {
         console.log("Lanzando shutdown");
-        this.socket.emit('shutdown');
+        this.props.socket.emit('shutdown');
     }
 
     render() {
         return (
             <section className="controlPanel">
-                <div><button>Pausa</button><button>Continuar</button></div>
-                <div><button>Cancelar</button><button onClick={this.shutDown}>Apagar</button></div>
+                <div><button onClick={}>Pausa</button><button onClick={}>Continuar</button></div>
+                <div><button onClick={}>Cancelar</button><button onClick={this.shutDown}>Apagar</button></div>
             </section>
         );
     }

@@ -89,6 +89,17 @@ io.use((socket, next) => {
             stopStreaming();
         }
     });
+
+    socket.on('pausePrint', () => {
+        serialPort.write('M25\n');
+
+    })
+    socket.on('resumePrint', () => {
+        serialPort.write('M24\n');
+    })
+    socket.on('cancelPrint', () => {
+        serialPort.write('M524\n');
+    })
 });
 
 // STREAMING FUNCTIONS
