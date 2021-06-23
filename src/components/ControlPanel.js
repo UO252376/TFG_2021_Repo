@@ -5,7 +5,8 @@ export default class ControlPanel extends React.Component {
     constructor(props) {
         super(props);
         this.pause = this.pause.bind(this);
-
+        this.resume = this.resume.bind(this);
+        this.cancel = this.cancel.bind(this);
         this.shutDown = this.shutDown.bind(this);
     }
 
@@ -32,8 +33,8 @@ export default class ControlPanel extends React.Component {
     render() {
         return (
             <section className="controlPanel">
-                <div><button onClick={}>Pausa</button><button onClick={}>Continuar</button></div>
-                <div><button onClick={}>Cancelar</button><button onClick={this.shutDown}>Apagar</button></div>
+                <div><button onClick={this.pause}>Pausa</button><button onClick={this.resume}>Continuar</button></div>
+                <div><button onClick={this.cancel}>Cancelar</button><button onClick={this.shutDown}>Apagar</button></div>
             </section>
         );
     }
