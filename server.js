@@ -97,9 +97,6 @@ io.use((socket, next) => {
     socket.on('resumePrint', () => {
         serialPort.write('M24\n');
     })
-    socket.on('cancelPrint', () => {
-        serialPort.write('M81\n');
-    })
 });
 
 // STREAMING FUNCTIONS
@@ -114,7 +111,7 @@ function startStreaming(io) {
       return;
     }
    
-    var args = ["-w", "320", "-h", "240", "-o", path.join(__dirname, '/stream/image_stream.jpg'), "-t", "999999999", "-tl", "1000"];
+    var args = ["-w", "320", "-h", "240","-q","75", "-o", path.join(__dirname, '/stream/image_stream.jpg'), "-t", "999999999", "-tl", "1000"];
     proc = spawn('raspistill', args);
    
     console.log('Watching for changes...');

@@ -21,10 +21,6 @@ export default class ControlPanel extends React.Component {
         this.props.socket.emit('resumePrint');
     }
 
-    cancel(){
-        this.props.socket.emit('cancelPrint');
-    }
-
     shutDown() {
         console.log("Lanzando shutdown");
         this.props.socket.emit('shutdown');
