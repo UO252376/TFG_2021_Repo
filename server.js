@@ -147,7 +147,9 @@ serialPort.on('open', () => {
 
 // EMAIL NOTIFICATION;
 const nodemailer = require('nodemailer');
-const template = require("./src/docs/mailTemplate.html")
+const { promisify } =  require('util');
+const readFile = promisify(fs.readFile);
+const template = await readFile("./src/docs/mailTemplate.html", "utf8")
 const mailUsername = "3dprintercontroller@gmail.com"; // TRY GMAIL BUT CHANGE IF IT DOESN'T WORK;
 const mailPassword = "!TFG2021";
 let transporter = nodemailer.createTransport({
@@ -165,7 +167,7 @@ let mailOptions = {
     to: "clientUser@mail.etc",
     subject: "Alerta: interrupción en el flujo de filamento detectada",
     text: "",
-    amp: "'" + template + "'"
+    amp: template
 }
 
 function sendMail(user) {
