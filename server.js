@@ -36,7 +36,6 @@ server.listen(port, () => {
 
 
 // GPIO
-var LED = new Gpio(4, 'high'); // FILAMENT SENSOR LIGHT
 var limitSwitch = new Gpio(17, 'in', 'both'); // FILAMENT SENSOR LIMIT SWITCH
 var relay = new Gpio(18, 'low'); // RELÉ PROGRAMABLE
 
@@ -47,8 +46,9 @@ limitSwitch.watch((err,value) => {
         return;
     }
     io.sockets.emit('filamentStatus', value);
-    console.log(chalk.blue('Led change tocvalue: ${value}'));
-    LED.writeSync(value);
+    if(value == 0){
+        sendMail('uo252376@uniovi.es');
+    }
 });
 
 //SOCKETS
@@ -144,6 +144,37 @@ serialPort.on('open', () => {
     });
     REQUEST_TEMP_ID = setInterval(() => serialPort.write('M105\n'), 8000);
 });
+
+// EMAIL NOTIFICATION;
+const nodemailer = require('nodemailer');
+const template = require("./src/docs/mailTemplate.html")
+const mailUsername = "3dprintercontroller@gmail.com";
+const mailPassword = "!TFG2021";
+let transporter = nodemailer.createTransport({
+    host: 'smpt.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: mailUsername,
+        pass: mailPassword
+    }    
+});
+
+let mailOptions = {
+    from: 'PRINTERCONTROLLER ' + mailUsername,
+    to: "clientUser@mail.etc",
+    subject: "Alerta: interrupción en el flujo de filamento detectada",
+    text: "",
+    html: template
+}
+
+function sendMail(user) {
+    mailOptions.to = user;
+    transporter.sendMail(mailOptions, (error, info) => {
+        if(error) console.log(error);
+        else console.log('Message %s sent; %s', info.messageId, info.response);
+    })
+}
 
 
 

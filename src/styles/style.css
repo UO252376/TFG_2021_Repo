@@ -42,7 +42,7 @@ header h1 {
 }
 
 section {
-    background-color: rgb(48,53,58);
+    background-color: rgb(240, 233, 226);
     margin: 20px;
     align-self: center;
     padding: 10px;
@@ -50,7 +50,27 @@ section {
     width: 80%;
     margin-left: 10%;
     border: 15px solid rgb(54,73,109);
-    border-radius: 8px;;
+    border-radius: 8px;
+}
+
+h3{
+    text-align: center;
+    background-color: rgb(48,53,58);
+    color: rgb(240, 233, 226);
+    padding: 10px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {		
+    background-color: rgb(48,53,58);
+    color: rgb(240, 233, 226);
+    font: 2em;
+    padding: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;		
 }
 
 /*------------------------------------------ SPAN DE COLORES ----------------------------------------------- */
@@ -83,15 +103,6 @@ section {
 }
 
 /*---------------------------------------------------- TEMP CANVAS ------------------------------------------------- */
-.tempCanvas h3{
-    text-align: center;
-    background-color: rgb(240, 233, 226);
-    padding: 10px;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .tempCanvas .header {
     flex-direction: row;
 }
