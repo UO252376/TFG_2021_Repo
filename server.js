@@ -175,11 +175,16 @@ let mailOptions = {
 }
 
 function sendMail(user) {
-    mailOptions.to = user;
-    transporter.sendMail(mailOptions, (error, info) => {
-        if(error) console.log(error);
-        else console.log('Message %s sent; %s', info.messageId, info.response);
-    })
+    if(template){
+        mailOptions.to = user;
+        transporter.sendMail(mailOptions, (error, info) => {
+            if(error) console.log(error);
+            else console.log('Message %s sent; %s', info.messageId, info.response);
+        })
+    }
+    else {
+        setTimeout(() => sendMail(user), 1000);
+    }
 }
 
 
