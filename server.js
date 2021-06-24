@@ -147,9 +147,13 @@ serialPort.on('open', () => {
 
 // EMAIL NOTIFICATION;
 const nodemailer = require('nodemailer');
-const template = fs.readFile("./src/docs/mailTemplate.html", {
-    encoding: 'utf-8'
-})
+const template;
+fs.readFile("./src/docs/mailTemplate.html",
+    { encoding: 'utf-8' }, 
+    (err, data) => {
+        if(err) console.log(err);
+        else  template = data;
+});
 const mailUsername = "3dprintercontroller@gmail.com"; // TRY GMAIL BUT CHANGE IF IT DOESN'T WORK;
 const mailPassword = "!TFG2021";
 let transporter = nodemailer.createTransport({
