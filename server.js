@@ -147,7 +147,7 @@ serialPort.on('open', () => {
 
 // EMAIL NOTIFICATION;
 const nodemailer = require('nodemailer');
-const template;
+var template;
 fs.readFile("./src/docs/mailTemplate.html",
     { encoding: 'utf-8' }, 
     (err, data) => {
