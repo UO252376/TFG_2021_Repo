@@ -6,7 +6,6 @@ export default class ControlPanel extends React.Component {
         super(props);
         this.pause = this.pause.bind(this);
         this.resume = this.resume.bind(this);
-        this.cancel = this.cancel.bind(this);
         this.shutDown = this.shutDown.bind(this);
     }
 
