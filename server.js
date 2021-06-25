@@ -170,8 +170,7 @@ let mailOptions = {
     from: 'PRINTERCONTROLLER ' + mailUsername,
     to: "clientUser@mail.etc",
     subject: "Alerta: interrupción en el flujo de filamento detectada",
-    text: "",
-    amp: template
+    html: template
 }
 
 function sendMail(user) {
