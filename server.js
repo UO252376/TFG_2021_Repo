@@ -157,7 +157,7 @@ fs.readFile("./src/docs/mailTemplate.html",
 const mailUsername = "3dprintercontroller@gmail.com"; // TRY GMAIL BUT CHANGE IF IT DOESN'T WORK;
 const mailPassword = "!TFG2021";
 let transporter = nodemailer.createTransport({
-    host: 'smpt.gmail.com',
+    host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
