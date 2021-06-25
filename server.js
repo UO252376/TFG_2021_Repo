@@ -46,7 +46,7 @@ limitSwitch.watch((err,value) => {
         return;
     }
     io.sockets.emit('filamentStatus', value);
-    if(value == Gpio.LOW){
+    if(value == Gpio.HIGH){
         sendMail('uo252376@uniovi.es', 'limitSwitch value = ' + value);
     }
 });
@@ -107,7 +107,7 @@ var proc;
 function startStreaming(io) {
  
     if (app.get('watchingFile')) {
-      io.sockets.emit('liveStream', 'image_stream.jpg');
+      io.sockets.emit('liveStream','image_stream.jpg?_t=' + (Math.random() * 100000));
       return;
     }
    
@@ -119,7 +119,7 @@ function startStreaming(io) {
     app.set('watchingFile', true);
    
     fs.watchFile(path.join(__dirname, '/stream/image_stream.jpg'), {bigInt: false, persistent: true, interval: 1000}, function(current, previous) {
-      io.sockets.emit('liveStream', 'image_stream.jpg');
+      io.sockets.emit('liveStream', 'image_stream.jpg?_t=' + (Math.random() * 100000));
     });
 }
 
