@@ -46,7 +46,7 @@ limitSwitch.watch((err,value) => {
         return;
     }
     io.sockets.emit('filamentStatus', value);
-    if(value == 0){
+    if(value === 0){
         sendMail('uo252376@uniovi.es');
     }
 });
