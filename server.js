@@ -177,6 +177,7 @@ function sendMail(user, value) {
     if(template){
         mailOptions.to = user;
         transporter.sendMail(mailOptions, (error, info) => {
+            console.log(template)
             if(error) console.log(error);
             else console.log('Message %s with value %s sent: %s', info.messageId, value, info.response);
         })
