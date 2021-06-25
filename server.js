@@ -147,13 +147,6 @@ serialPort.on('open', () => {
 
 // EMAIL NOTIFICATION;
 const nodemailer = require('nodemailer');
-var template;
-fs.readFile("./src/docs/mailTemplate.html",
-    { encoding: 'utf-8' }, 
-    (err, data) => {
-        if(err) console.log(err);
-        else  template = data;
-});
 const mailUsername = "3dprintercontroller@gmail.com"; // TRY GMAIL BUT CHANGE IF IT DOESN'T WORK;
 const mailPassword = "!TFG2021";
 let transporter = nodemailer.createTransport({
@@ -170,11 +163,20 @@ let mailOptions = {
     from: 'PRINTERCONTROLLER ' + mailUsername,
     to: "clientUser@mail.etc",
     subject: "Alerta: interrupción en el flujo de filamento detectada",
-    html: "'" +  template + "'"
+}
+loadHTMLTemplate();
+
+function loadHTMLTemplate() {
+    fs.readFile("./src/docs/mailTemplate.html",
+        { encoding: 'utf-8' }, 
+        (err, data) => {
+            if(err) console.log(err);
+            else  mailOptions.html = data;
+    });
 }
 
 function sendMail(user, value) {
-    if(template){
+    if(mailOptions.html){
         mailOptions.to = user;
         transporter.sendMail(mailOptions, (error, info) => {
             console.log(template)
@@ -183,7 +185,8 @@ function sendMail(user, value) {
         })
     }
     else {
-        setTimeout(() => sendMail(user), 1000);
+        loadHTMLTemplate();
+        setTimeout(() => sendMail(user), 5000);
     }
 }
 
