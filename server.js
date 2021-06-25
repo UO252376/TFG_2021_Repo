@@ -176,12 +176,12 @@ function loadHTMLTemplate() {
 }
 
 function sendMail(user, value) {
-    if(mailOptions.html && value){
+    if(mailOptions.html && !value){
         mailOptions.to = user;
         transporter.sendMail(mailOptions, (error, info) => {
             console.log(template)
             if(error) console.log(error);
-            else console.log('Message %s with value %s sent: %s', info.messageId, value, info.response);
+            else console.log('Message %s with value %s sent: %s', info.messageId, ''+value, info.response);
         })
     }
     else {
