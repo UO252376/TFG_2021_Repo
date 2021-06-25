@@ -46,7 +46,7 @@ limitSwitch.watch((err,value) => {
         return;
     }
     io.sockets.emit('filamentStatus', value);
-    if(value === 0){
+    if(!value){
         sendMail('uo252376@uniovi.es', 'limitSwitch value = ' + value);
     }
 });
@@ -176,7 +176,7 @@ function loadHTMLTemplate() {
 }
 
 function sendMail(user, value) {
-    if(mailOptions.html){
+    if(mailOptions.html && value){
         mailOptions.to = user;
         transporter.sendMail(mailOptions, (error, info) => {
             console.log(template)
@@ -186,7 +186,7 @@ function sendMail(user, value) {
     }
     else {
         loadHTMLTemplate();
-        setTimeout(() => sendMail(user), 5000);
+        setTimeout(() => sendMail(user, value), 5000);
     }
 }
 
