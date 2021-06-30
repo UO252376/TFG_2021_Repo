@@ -3,7 +3,8 @@ import React from 'react';
 export default class TempCanvas extends React.Component {
     constructor(props) {
         super(props);
-        this.canvasRef = React.createRef();
+        this.canvasGridRef = React.createRef();
+        this.canvasDataRef = React.createRef();
         this.state = {
             showLegend: false
         }
@@ -11,11 +12,15 @@ export default class TempCanvas extends React.Component {
     }
 
     componentDidMount() {
-        this.canvas = this.canvasRef.current;
-        this.context = this.canvas.getContext('2d');
-        this.context.fillStyle = "#FF00FF";
-        this.context.font= '10px Arial';
-        this.context.fillRect(0,0, this.context.canvas.width, this.context.canvas.height);
+        this.canvasGrid = this.canvasGridRef.current;
+        this.contextGrid = this.canvasGrid.getContext('2d');
+        this.contextGrid.fillStyle = "#FF00FF";
+        this.contextGrid.fillRect(0,0, this.canvasGrid.width, this.canvasGrid.height);
+
+        this.canvasData = this.canvasDataRef.current;
+        this.contextData = this.canvasData.getContext('2d');
+        this.contextData.fillStyle = "#00FFFF";
+        this.contextData.fillRect(this.canvasData.width/2, this.canvasData.height/2,this.canvasData.width, this.canvasData.height)
     }
 
     toggleLegend() {
@@ -31,7 +36,10 @@ export default class TempCanvas extends React.Component {
                     <h3>Temperatura de impresora</h3>
                     <button onClick={this.toggleLegend}>?</button>
                 </div>
-                <canvas ref={this.canvasRef} id="tempCanvas"></canvas>
+                <div class="canvasHolder">
+                    <canvas ref={this.canvasGridRef} id="gridCanvas"></canvas>
+                    <canvas ref={this.canvasDataRef} if="dataCanvas"></canvas>
+                </div>
                 <div className={"leyenda "  + (this.state.showLegend ? "" : "hide")}>
                     <span>Extrusor <span className="spanBox blueBox"></span></span>
                     <span>Cama <span className="spanBox greenBox"></span></span>
